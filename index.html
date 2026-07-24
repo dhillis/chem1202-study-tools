@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHEM 1202 — Exam 2 Practice (Ch 16–17)</title>
+<style>
+  :root{
+    --bg:#f4f6fa; --card:#ffffff; --ink:#1c2333; --muted:#6b7487;
+    --accent:#4553c2; --accent-soft:#eceefb; --green:#1e8e5a; --green-soft:#e3f5ec;
+    --red:#c0392b; --red-soft:#fdecea; --gold:#b7791f; --gold-soft:#fdf3e0;
+    --border:#dfe4ee; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  .wrap{max-width:820px;margin:0 auto;padding:28px 18px 60px}
+  header.app{ text-align:center;margin-bottom:22px }
+  header.app h1{margin:0;font-size:1.55rem}
+  header.app p{margin:4px 0 0;color:var(--muted);font-size:.95rem}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:0 1px 3px rgba(20,30,60,.06)}
+  h2{margin:0 0 12px;font-size:1.15rem}
+  h3{margin:18px 0 8px;font-size:1rem}
+  .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .stat{flex:1;min-width:120px;background:var(--accent-soft);border-radius:10px;padding:12px 14px;text-align:center}
+  .stat .big{font-size:1.5rem;font-weight:700;color:var(--accent)}
+  .stat .lbl{font-size:.8rem;color:var(--muted)}
+  .stat.green{background:var(--green-soft)} .stat.green .big{color:var(--green)}
+  .stat.gold{background:var(--gold-soft)} .stat.gold .big{color:var(--gold)}
+  button{font:inherit;cursor:pointer;border:none;border-radius:10px;padding:11px 18px;font-weight:600}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{filter:brightness(1.08)}
+  .btn-secondary{background:var(--accent-soft);color:var(--accent)}
+  .btn-ghost{background:transparent;color:var(--muted);text-decoration:underline;padding:8px 10px}
+  .btn-danger{background:var(--red-soft);color:var(--red)}
+  .btn-green{background:var(--green-soft);color:var(--green)}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  label.opt{display:flex;align-items:center;gap:8px;font-size:.95rem;cursor:pointer}
+  select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:#fff}
+  input[type=file]{display:none}
+  .choices{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .choice{display:flex;gap:10px;align-items:flex-start;text-align:left;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-weight:500;transition:border .12s, background .12s}
+  .choice:hover:not(:disabled){border-color:var(--accent);background:var(--accent-soft)}
+  .choice .letter{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+  .choice.selected{border-color:var(--accent);background:var(--accent-soft)}
+  .choice.correct{border-color:var(--green);background:var(--green-soft)}
+  .choice.correct .letter{background:var(--green);color:#fff}
+  .choice.wrong{border-color:var(--red);background:var(--red-soft)}
+  .choice.wrong .letter{background:var(--red);color:#fff}
+  .tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.03em;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+  .tag.gold{background:var(--gold-soft);color:var(--gold)}
+  .tag.green{background:var(--green-soft);color:var(--green)}
+  .progressbar{height:8px;background:var(--border);border-radius:999px;overflow:hidden;margin:10px 0 18px}
+  .progressbar > div{height:100%;background:var(--accent);border-radius:999px;transition:width .25s}
+  .qtext{font-size:1.08rem;font-weight:600;margin:6px 0 0}
+  .feedback{margin-top:16px;border-radius:10px;padding:14px 16px;font-size:.95rem}
+  .feedback.good{background:var(--green-soft);border:1px solid #bfe6d2}
+  .feedback.bad{background:var(--red-soft);border:1px solid #f2c4bd}
+  .feedback.idk{background:var(--gold-soft);border:1px solid #ecd9ab}
+  .btn-idk{background:var(--gold-soft);color:var(--gold);margin-top:12px;width:100%;border:1.5px dashed #ecd9ab}
+  .btn-idk:hover:not(:disabled){border-color:var(--gold)}
+  .btn-idk.selected{border:1.5px solid var(--gold);outline:2px solid var(--gold-soft)}
+  .feedback .verdict{font-weight:700;margin-bottom:6px}
+  .src{color:var(--muted);font-size:.82rem;margin-top:8px}
+  .quiz-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:10px;flex-wrap:wrap}
+  .learn-toggle{display:flex;align-items:center;gap:8px;font-size:.92rem;color:var(--muted);cursor:pointer;user-select:none}
+  .learn-toggle input{transform:scale(1.15)}
+  table{width:100%;border-collapse:collapse;font-size:.9rem}
+  th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+  .topic-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:.92rem}
+  .topic-row:last-child{border-bottom:none}
+  .topic-bar{flex:0 0 130px;height:7px;background:var(--border);border-radius:999px;overflow:hidden;margin-left:10px}
+  .topic-bar > div{height:100%;background:var(--green)}
+  .score-hero{text-align:center;padding:10px 0 6px}
+  .score-hero .pct{font-size:3rem;font-weight:800;color:var(--accent)}
+  .review-item{border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+  .review-item.missed{border-left:4px solid var(--red)}
+  .review-item.right{border-left:4px solid var(--green)}
+  .review-item .q{font-weight:600}
+  .review-item .ans{margin:6px 0;font-size:.92rem}
+  .muted{color:var(--muted)}
+  .hidden{display:none}
+  .center{text-align:center}
+  .mt{margin-top:14px}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:.88rem;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:50;opacity:0;pointer-events:none;transition:opacity .2s}
+  .toast.show{opacity:1}
+  @media (max-width:520px){ .quiz-foot{flex-direction:column;align-items:stretch} .quiz-foot button{width:100%} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="app">
+    <h1>&#9883; CHEM 1202 &mdash; Exam 2 Practice</h1>
+    <p>Chapters 16 &amp; 17 &middot; Kinetics and Equilibrium &middot; built from your Module 2 materials</p>
+  </header>
+
+  <!-- ============ HOME ============ -->
+  <div id="screen-home">
+    <div class="card">
+      <h2>Study resources</h2>
+      <p class="muted" style="margin-top:-6px">Companion documents built from the same Module 2 materials as this app.</p>
+      <div class="row mt">
+        <a class="btn-secondary" style="text-decoration:none;display:inline-block;padding:11px 18px;border-radius:10px;font-weight:600" href="study-guide.html">&#128218; Study Guide</a>
+        <a class="btn-secondary" style="text-decoration:none;display:inline-block;padding:11px 18px;border-radius:10px;font-weight:600" href="practice-problems.html">&#9999;&#65039; Practice Problems</a>
+        <a class="btn-secondary" style="text-decoration:none;display:inline-block;padding:11px 18px;border-radius:10px;font-weight:600" href="practice-problems-solutions.html">&#9989; Practice Problems (Solutions)</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="stat"><div class="big" id="stat-total">0</div><div class="lbl">Questions</div></div>
+        <div class="stat green"><div class="big" id="stat-learned">0</div><div class="lbl">Marked learned</div></div>
+        <div class="stat gold"><div class="big" id="stat-best">&ndash;</div><div class="lbl">Best score</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Start a session</h2>
+      <div class="row mt">
+        <label class="opt">Mode
+          <select id="opt-mode">
+            <option value="practice">Practice — feedback after each question</option>
+            <option value="exam">Exam — graded at the end</option>
+          </select>
+        </label>
+        <label class="opt">Questions
+          <select id="opt-count">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="30">30</option>
+            <option value="all">All</option>
+          </select>
+        </label>
+      </div>
+      <div class="row mt">
+        <label class="opt">Chapter
+          <select id="opt-chapter">
+            <option value="all" selected>Both (16 &amp; 17)</option>
+            <option value="16">Chapter 16 — Kinetics</option>
+            <option value="17">Chapter 17 — Equilibrium</option>
+          </select>
+        </label>
+      </div>
+      <div class="row mt">
+        <label class="opt"><input type="checkbox" id="opt-include-learned"> Include questions I've marked as learned</label>
+      </div>
+      <div class="row mt">
+        <button class="btn-primary" id="btn-start">Start &#9654;</button>
+        <span class="muted" id="pool-note"></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Progress by topic</h2>
+      <div id="topic-list"></div>
+      <div class="row mt">
+        <button class="btn-danger" id="btn-reset-learned">Reset learned marks</button>
+        <button class="btn-ghost" id="btn-clear-history">Clear result history</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Past results</h2>
+      <div id="history-box"><p class="muted">No sessions yet — results are saved on this computer automatically.</p></div>
+      <div class="row mt">
+        <button class="btn-secondary" id="btn-download">&#8681; Download results to file</button>
+        <button class="btn-secondary" id="btn-upload">&#8679; Upload results from file</button>
+        <input type="file" id="file-upload" accept="application/json">
+      </div>
+      <p class="muted mt" style="font-size:.82rem">Download saves your history and learned marks to a file on this computer. Upload merges a previously downloaded file back in — handy for keeping your progress in sync between browsers or computers.</p>
+    </div>
+  </div>
+
+  <!-- ============ QUIZ ============ -->
+  <div id="screen-quiz" class="hidden">
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <div><span class="tag" id="q-ch"></span><span class="tag gold" id="q-topic"></span><span class="tag green hidden" id="q-learned-tag">learned</span></div>
+        <div class="muted" id="q-counter"></div>
+      </div>
+      <div class="progressbar"><div id="q-progress" style="width:0%"></div></div>
+      <div class="qtext" id="q-text"></div>
+      <div class="choices" id="q-choices"></div>
+      <button class="btn-idk" id="btn-idk">&#129335; I don't know &mdash; show me the answer</button>
+      <div id="q-feedback"></div>
+      <div class="quiz-foot">
+        <label class="learn-toggle hidden" id="learn-wrap"><input type="checkbox" id="learn-check"> I know this &mdash; don't ask again</label>
+        <div style="display:flex;gap:10px">
+          <button class="btn-ghost" id="btn-quit">Quit</button>
+          <button class="btn-primary" id="btn-next" disabled>Next &#9654;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ RESULTS ============ -->
+  <div id="screen-results" class="hidden">
+    <div class="card">
+      <div class="score-hero">
+        <div class="pct" id="r-pct"></div>
+        <div class="muted" id="r-sub"></div>
+      </div>
+      <h3>By topic</h3>
+      <div id="r-topics"></div>
+    </div>
+    <div class="card">
+      <h2 id="r-review-head">Review</h2>
+      <div id="r-review"></div>
+    </div>
+    <div class="card center">
+      <div class="row" style="justify-content:center">
+        <button class="btn-secondary" id="btn-retry-missed">Retry missed questions</button>
+        <button class="btn-primary" id="btn-home">Back to start</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// CHEM 1202 Exam 2 (Ch 16-17) question bank
+// Sources: Module 2 homework (ALEKS), professor study guides, zoom-meeting notes, lecture slides, and Claude Study Guide synthesis.
+const QUESTIONS = [
+// ===== Ch 16 — Reaction Rates =====
+{id:1, ch:16, t:"Reaction Rates", s:"Study Guide Ch 16 (rate of reaction example)",
+ q:"For the reaction 2A + B &rarr; C, [A] starts at 2.00 M and is 1.87 M after 5.00 s. What is the <b>rate of reaction</b> (not just the rate of disappearance of A)?",
+ c:["0.013 M/s","0.026 M/s","0.052 M/s","&minus;0.026 M/s"], a:0,
+ e:"Rate of A disappearance = &minus;&Delta;[A]/&Delta;t = &minus;(1.87&minus;2.00)/5.00 = 0.026 M/s. But the <b>rate of reaction</b> divides by A's coefficient: rate = &minus;(1/2)(&Delta;[A]/&Delta;t) = 0.013 M/s. This is exactly why the study guide asks 'why is there a &minus;1/2 in the equation' &mdash; coefficients &gt; 1 must be divided out so every species gives the same overall rate."},
+{id:2, ch:16, t:"Reaction Rates", s:"Reaction Rate Ch 16 pt 1 (Sample Problem 16.1)",
+ q:"For 2H<sub>2</sub>(g) + O<sub>2</sub>(g) &rarr; 2H<sub>2</sub>O(g), [O<sub>2</sub>] is decreasing at 0.23 mol/L&middot;s. At what rate is [H<sub>2</sub>O] increasing?",
+ c:["0.12 mol/L&middot;s","0.23 mol/L&middot;s","0.46 mol/L&middot;s","0.92 mol/L&middot;s"], a:2,
+ e:"Rate = &minus;(1/1)&Delta;[O<sub>2</sub>]/&Delta;t = (1/2)&Delta;[H<sub>2</sub>O]/&Delta;t. Since H<sub>2</sub>O's coefficient (2) is twice O<sub>2</sub>'s (1), H<sub>2</sub>O forms twice as fast as O<sub>2</sub> disappears: 2 &times; 0.23 = 0.46 mol/L&middot;s."},
+{id:3, ch:16, t:"Reaction Rates", s:"Reaction Rate Ch 16 pt 1 (Fig 16.6)",
+ q:"For H<sub>2</sub>(g) + I<sub>2</sub>(g) &rarr; 2HI(g), why does [HI] increase twice as fast as [H<sub>2</sub>] decreases?",
+ c:["HI is less stable than H<sub>2</sub>","The coefficient of HI (2) is twice the coefficient of H<sub>2</sub> (1) in the balanced equation","HI has a higher molar mass","This only happens at high temperature"], a:1,
+ e:"Each rate must be divided by its own stoichiometric coefficient to give the same overall reaction rate: rate = &minus;&Delta;[H<sub>2</sub>]/&Delta;t = (1/2)&Delta;[HI]/&Delta;t. Solving shows [HI] changes twice as fast as [H<sub>2</sub>], purely from the 2:1 mole ratio."},
+{id:4, ch:16, t:"Reaction Rates", s:"Reaction Rate Ch 16 pt 1 (factors)",
+ q:"Which of the following would generally be expected to DECREASE a reaction's rate?",
+ c:["Increasing the reactant concentration","Increasing the temperature","Increasing the surface area of a solid reactant","Decreasing the temperature"], a:3,
+ e:"Higher concentration, higher temperature, and greater surface area all increase collision frequency/energy and speed up a reaction. Lowering the temperature reduces particle kinetic energy and collision frequency, slowing the reaction down."},
+{id:5, ch:16, t:"Reaction Rates", s:"Reaction Rate Ch 16 pt 1 (Fig 16.3, steel wool)",
+ q:"A hot steel nail glows feebly in O<sub>2</sub>, but the same mass of steel wool bursts into flame. Why?",
+ c:["Steel wool is a different metal than the nail","Steel wool has far more surface area exposed to O<sub>2</sub>, allowing many more collisions per second","The nail is at a lower temperature","Steel wool contains a catalyst"], a:1,
+ e:"Same mass, same substance &mdash; but shredding it into fine wool exposes vastly more surface area to O<sub>2</sub>. More reactant particles in contact means more collisions per second, so the reaction (and rate of heat release) is much faster."},
+{id:6, ch:16, t:"Reaction Rates", s:"Claude Study Guide (rate definition)",
+ q:"Reaction rate is best defined as:",
+ c:["The change in temperature per unit time","The change in the concentration of a reactant or product per unit time","The total energy released by a reaction","The number of moles of product formed, regardless of time"], a:1,
+ e:"Chemical kinetics studies how fast [reactant] disappears or [product] appears over time. Rate always has units of concentration/time (e.g., mol/L&middot;s), never just an amount or energy value."},
+{id:7, ch:16, t:"Reaction Rates", s:"Reaction Rate Ch 16 pt 1 (general form)",
+ q:"For the general reaction aA + bB &rarr; cC + dD, which expression correctly relates all four rates?",
+ c:["rate = &Delta;[A]/&Delta;t = &Delta;[B]/&Delta;t = &Delta;[C]/&Delta;t = &Delta;[D]/&Delta;t","rate = &minus;(1/a)&Delta;[A]/&Delta;t = &minus;(1/b)&Delta;[B]/&Delta;t = (1/c)&Delta;[C]/&Delta;t = (1/d)&Delta;[D]/&Delta;t","rate = a&Delta;[A]/&Delta;t = b&Delta;[B]/&Delta;t","rate = &Delta;[C]/&Delta;t only, since only products matter"], a:1,
+ e:"Each species' rate of change must be divided by its own coefficient (with a minus sign for reactants, since they're disappearing) so that every term equals the same single 'rate of reaction.' Ignoring the coefficients is the most common setup mistake."},
+
+// ===== Ch 16 — Rate Laws & Method of Initial Rates =====
+{id:8, ch:16, t:"Rate Laws & Method of Initial Rates", s:"Study Guide Ch 16 / Rate Law pt 2",
+ q:"In the rate law Rate = k[A]<sup>n</sup>[B]<sup>m</sup>, what do n and m represent?",
+ c:["The stoichiometric coefficients of A and B in the balanced equation","The experimentally determined reaction orders with respect to A and B &mdash; NOT necessarily equal to the coefficients","The molar masses of A and B","The number of moles of A and B present initially"], a:1,
+ e:"The study guide stresses this directly: n and m are reaction orders, found only by experiment (e.g., the method of initial rates). They are sometimes equal to the balanced-equation coefficients, but there is no rule requiring it &mdash; you must never assume they match."},
+{id:9, ch:16, t:"Rate Laws & Method of Initial Rates", s:"Method of Initial Rates doc (\"the doubling trick\")",
+ q:"When [A] is doubled, the initial rate exactly quadruples (rate &times; 4), while everything else is held constant. What is the order with respect to A?",
+ c:["Zero order (n = 0)","First order (n = 1)","Second order (n = 2)","Cannot be determined"], a:2,
+ e:"Set up 2<sup>n</sup> = 4 (rate ratio equals the concentration ratio raised to the order). Since 2<sup>2</sup> = 4, n = 2. The Method of Initial Rates document is emphatic: you solve this as an EXPONENT equation &mdash; never multiply or divide the ratio directly."},
+{id:10, ch:16, t:"Rate Laws & Method of Initial Rates", s:"Method of Initial Rates doc",
+ q:"When [A] is doubled, the initial rate does not change at all. What is the order with respect to A?",
+ c:["Zero order (n = 0)","First order (n = 1)","Negative first order","Second order (n = 2)"], a:0,
+ e:"2<sup>n</sup> = 1 (ratio of rates is 1 since the rate didn't change). Anything raised to the zero power equals 1, so n = 0. A zero-order reactant's concentration doesn't appear in the rate law at all."},
+{id:11, ch:16, t:"Rate Laws & Method of Initial Rates", s:"Method of Initial Rates doc",
+ q:"When [B] is tripled, the initial rate also exactly triples, with all other concentrations constant. What is the order with respect to B?",
+ c:["Zero order","First order (m = 1)","Second order","Third order"], a:1,
+ e:"3<sup>m</sup> = 3, so m = 1. Whenever a concentration change produces the exact same-factor change in rate, that reactant is first order."},
+{id:12, ch:16, t:"Rate Laws & Method of Initial Rates", s:"Method of Initial Rates doc (2A+B+C&rarr;D+2E dataset)",
+ q:"For 2A + B + C &rarr; D + 2E, two trials hold [A] and [B] constant while [C] doubles (0.50 &rarr; 1.0 M) and the initial rate quadruples (0.022 &rarr; 0.088 M/s). What is the order with respect to C?",
+ c:["Zero order","First order","Second order","Third order"], a:2,
+ e:"Rate ratio = 0.088/0.022 = 4.0 = 2<sup>p</sup>, so p = 2. Reaction is second order in C. (This is a real dataset from the Method of Initial Rates handout, verified: trials with [A]=0.10 M, [B]=2.0 M fixed, [C] doubled.)"},
+{id:13, ch:16, t:"Rate Laws & Method of Initial Rates", s:"Method of Initial Rates doc (2A+B+C&rarr;D+2E dataset)",
+ q:"For the same reaction 2A + B + C &rarr; D + 2E, the full dataset gives orders: n<sub>A</sub> = 0, n<sub>B</sub> = 1, n<sub>C</sub> = 2. What is the correct rate law and overall reaction order?",
+ c:["Rate = k[A][B][C]; 3rd order overall","Rate = k[B][C]<sup>2</sup>; 3rd order overall (A drops out since it's zero order)","Rate = k[A]<sup>2</sup>[B][C]<sup>2</sup>; 5th order overall, matching the balanced equation's coefficients","Rate = k[B]<sup>2</sup>[C]; 3rd order overall"], a:1,
+ e:"A zero-order species (exponent 0) drops out of the rate law entirely, since [A]<sup>0</sup> = 1. Rate = k[A]<sup>0</sup>[B]<sup>1</sup>[C]<sup>2</sup> = k[B][C]<sup>2</sup>. Overall order = sum of exponents = 0+1+2 = 3, which has nothing to do with the balanced equation's coefficients (2, 1, 1)."},
+{id:14, ch:16, t:"Rate Laws & Method of Initial Rates", s:"Claude Study Guide (2NO+O2&rarr;2NO2 dataset)",
+ q:"For 2NO(g) + O<sub>2</sub>(g) &rarr; 2NO<sub>2</sub>(g), doubling [NO] alone quadruples the rate, and doubling [O<sub>2</sub>] alone doubles the rate. What is the overall reaction order?",
+ c:["2nd order","3rd order","4th order","1st order"], a:1,
+ e:"Doubling [NO] &times;4 rate &rarr; 2<sup>n</sup>=4 &rarr; n=2 (second order in NO). Doubling [O<sub>2</sub>] &times;2 rate &rarr; 2<sup>m</sup>=2 &rarr; m=1 (first order in O<sub>2</sub>). Rate = k[NO]<sup>2</sup>[O<sub>2</sub>]; overall order = 2+1 = 3rd order &mdash; even though the balanced equation's coefficients are 2 and 1 (coincidentally matching here, which is NOT guaranteed in general)."},
+{id:15, ch:16, t:"Rate Laws & Method of Initial Rates", s:"Rate Law Ch 16 pt 2 (units of k)",
+ q:"For the 3rd-order rate law Rate = k[NO]<sup>2</sup>[O<sub>2</sub>], with rate in M/s and concentrations in M, what are the units of k?",
+ c:["s<sup>&minus;1</sup>","M<sup>&minus;1</sup>&middot;s<sup>&minus;1</sup>","M<sup>&minus;2</sup>&middot;s<sup>&minus;1</sup>","M&middot;s<sup>&minus;1</sup>"], a:2,
+ e:"k = Rate &divide; ([NO]<sup>2</sup>[O<sub>2</sub>]) has units of (M/s) &divide; (M<sup>2</sup>&middot;M) = (M/s) &divide; M<sup>3</sup> = M<sup>&minus;2</sup>&middot;s<sup>&minus;1</sup>. The units of k always depend on the overall reaction order: they change to keep the whole rate law dimensionally consistent with M/s."},
+
+// ===== Ch 16 — Integrated Rate Laws & Half-Life =====
+{id:16, ch:16, t:"Integrated Rate Laws & Half-Life", s:"Integrated Rate Law Zoom (worked example, verified)",
+ q:"A reaction is first order in A. [A]<sub>0</sub> = 1.00 M, and after 2.00 minutes [A]<sub>t</sub> = 0.75 M. What is the rate constant k?",
+ c:["0.125 min<sup>&minus;1</sup>","0.144 min<sup>&minus;1</sup>","0.250 min<sup>&minus;1</sup>","0.288 min<sup>&minus;1</sup>"], a:1,
+ e:"First-order integrated law: ln[A]<sub>t</sub> = ln[A]<sub>0</sub> &minus; kt, so k = &minus;ln([A]<sub>t</sub>/[A]<sub>0</sub>)/t = &minus;ln(0.75/1.00)/2.00 = &minus;ln(0.75)/2.00 = 0.144 min<sup>&minus;1</sup>. <b>Trap:</b> 0.125 min<sup>&minus;1</sup> comes from wrongly using (A<sub>0</sub>&minus;A<sub>t</sub>)/t, a linear (zero-order-style) approach &mdash; first order requires the natural log."},
+{id:17, ch:16, t:"Integrated Rate Laws & Half-Life", s:"Claude Study Guide (first-order integrated law)",
+ q:"A first-order reaction has k = 0.0250 min<sup>&minus;1</sup> and [A]<sub>0</sub> = 0.500 M. What is [A] after 20.0 minutes?",
+ c:["0.303 M","0.250 M","0.400 M","0.100 M"], a:0,
+ e:"[A]<sub>t</sub> = [A]<sub>0</sub>e<sup>&minus;kt</sup> = 0.500 &times; e<sup>&minus;(0.0250)(20.0)</sup> = 0.500 &times; e<sup>&minus;0.500</sup> = 0.500 &times; 0.6065 = 0.303 M."},
+{id:18, ch:16, t:"Integrated Rate Laws & Half-Life", s:"Claude Study Guide (second-order integrated law)",
+ q:"A second-order reaction has k = 0.0250 L/mol&middot;min and [A]<sub>0</sub> = 0.400 M. What is [A] after 25.0 minutes?",
+ c:["0.320 M","0.150 M","0.400 M","0.0625 M"], a:0,
+ e:"Second-order integrated law: 1/[A]<sub>t</sub> = 1/[A]<sub>0</sub> + kt = 1/0.400 + (0.0250)(25.0) = 2.50 + 0.625 = 3.125. So [A]<sub>t</sub> = 1/3.125 = 0.320 M."},
+{id:19, ch:16, t:"Integrated Rate Laws & Half-Life", s:"Half-Life Zoom Meeting (order comparison)",
+ q:"For a FIRST-order reaction, how does the half-life change as the reaction proceeds through successive half-lives?",
+ c:["Each half-life is the same length, regardless of starting concentration","Each half-life is half as long as the previous one","Each half-life is twice as long as the previous one","Half-life is undefined for first-order reactions"], a:0,
+ e:"The defining feature of first-order kinetics: t&#189; = ln(2)/k does not depend on [A]&#8320; at all. The zoom notes' N<sub>2</sub>O<sub>5</sub> example shows three consecutive 24-minute half-lives (0.0600&rarr;0.0300&rarr;0.0150&rarr;0.00750 M) &mdash; always the same 24 minutes."},
+{id:20, ch:16, t:"Integrated Rate Laws & Half-Life", s:"Half-Life Zoom Meeting (order comparison)",
+ q:"How do the half-lives of a SECOND-order reaction change over time (as [A] decreases)?",
+ c:["Each successive half-life is the same length","Each successive half-life is half as long as the one before it","Each successive half-life is twice as long as the one before it (half-lives double)","Second-order reactions have no half-life"], a:2,
+ e:"t&#189; = 1/(k[A]&#8320;) &mdash; since [A]&#8320; keeps shrinking by half, and t&#189; is inversely proportional to the starting concentration, each new half-life takes twice as long as the last one. The notes give the pattern 100&rarr;200&rarr;400 hours."},
+{id:21, ch:16, t:"Integrated Rate Laws & Half-Life", s:"Half-Life Zoom Meeting (order comparison)",
+ q:"How do the half-lives of a ZERO-order reaction change over time?",
+ c:["Each successive half-life is the same length","Each successive half-life is half as long as the one before (half-lives are halved)","Each successive half-life is twice as long as the one before","Zero-order reactions never reach a half-life"], a:1,
+ e:"For zero order, t&#189; = [A]&#8320;/(2k). As [A]&#8320; keeps being cut in half at each stage, each new half-life is half the length of the previous one &mdash; the notes give the pattern 100&rarr;50.0&rarr;25.0 hours."},
+{id:22, ch:16, t:"Integrated Rate Laws & Half-Life", s:"Claude Study Guide (second-order half-life calc)",
+ q:"A reaction is second order in A, with k = 0.0250 L/mol&middot;min and [A]<sub>0</sub> = 0.400 M. What is the first half-life?",
+ c:["27.7 min","100. min","40.0 min","10.0 min"], a:1,
+ e:"For second order, t&#189; = 1/(k[A]&#8320;) = 1/[(0.0250)(0.400)] = 1/0.0100 = 100. min. (Contrast with first order, where t&#189; = ln2/k doesn't involve [A]&#8320; at all &mdash; mixing up the two formulas is a very common mistake.)"},
+{id:23, ch:16, t:"Integrated Rate Laws & Half-Life", s:"Integrated Rate Law Zoom (graphing to find order)",
+ q:"You have [A] vs. time data and don't know the reaction order. Plotting 1/[A]<sub>t</sub> vs. time gives a straight line (R&sup2; = 1), but plots of [A]<sub>t</sub> vs. time and ln[A]<sub>t</sub> vs. time are both curved. What is the reaction order, and what does the slope of the linear plot equal?",
+ c:["Zero order; slope = &minus;k","First order; slope = &minus;k","Second order; slope = +k","Second order; slope = &minus;k"], a:2,
+ e:"Each order has one plot that linearizes it: [A]<sub>t</sub> vs t (zero order, slope=&minus;k), ln[A]<sub>t</sub> vs t (first order, slope=&minus;k), and 1/[A]<sub>t</sub> vs t (second order, slope=+k, y-intercept=1/[A]&#8320;). Since only the 1/[A]<sub>t</sub> plot is linear here, the reaction is second order, and its slope directly gives +k."},
+
+// ===== Ch 16 — Collision Theory, Activation Energy & Arrhenius Equation =====
+{id:24, ch:16, t:"Collision Theory & Arrhenius Equation", s:"Theories of Kinetics Ch 16 pt 4 (collision theory)",
+ q:"According to collision theory, which two factors determine whether a molecular collision is 'effective' (leads to product)?",
+ c:["Temperature and pressure only","Sufficient energy (&ge; activation energy) and proper molecular orientation","Concentration and volume only","Catalyst presence and reactant color"], a:1,
+ e:"Not every collision reacts. Molecules must collide with at least the activation energy (E<sub>a</sub>) AND with the correct relative orientation so the right atoms make contact. Both conditions must be met simultaneously for an effective collision."},
+{id:25, ch:16, t:"Collision Theory & Arrhenius Equation", s:"Theories of Kinetics Ch 16 pt 4 (temperature effect)",
+ q:"Why does increasing temperature increase reaction rate, according to collision theory?",
+ c:["Higher T lowers the activation energy of the reaction","Higher T increases the FRACTION of collisions with energy &ge; E<sub>a</sub>, and increases collision frequency","Higher T makes every collision effective, regardless of orientation","Higher T decreases the concentration of reactants, speeding diffusion"], a:1,
+ e:"E<sub>a</sub> itself doesn't change with temperature. What changes is the energy distribution of the molecules: at higher T, a larger fraction of collisions have enough energy to clear the E<sub>a</sub> barrier, and collisions also happen more often &mdash; both effects raise the rate."},
+{id:26, ch:16, t:"Collision Theory & Arrhenius Equation", s:"Theories of Kinetics Ch 16 pt 4 (Arrhenius equation)",
+ q:"In the Arrhenius equation k = Ae<sup>&minus;E<sub>a</sub>/RT</sup>, what does A (the frequency factor) represent?",
+ c:["The activation energy divided by temperature","The product of collision frequency (Z) and the orientation probability factor (p): A = pZ","The equilibrium constant at infinite temperature","The average kinetic energy of the reactants"], a:1,
+ e:"A = pZ combines how OFTEN molecules collide (Z, collision frequency) with how likely a collision is correctly ORIENTED (p, the orientation probability factor). More complex molecules tend to have smaller p, since fewer collision geometries are 'just right.'"},
+{id:27, ch:16, t:"Collision Theory & Arrhenius Equation", s:"Claude Study Guide (two-point Arrhenius, forward calc)",
+ q:"A reaction has E<sub>a</sub> = 75.0 kJ/mol and k = 3.0&times;10<sup>&minus;4</sup> s<sup>&minus;1</sup> at 25.0&deg;C. What is k at 50.0&deg;C?",
+ c:["3.1&times;10<sup>&minus;3</sup> s<sup>&minus;1</sup>","6.0&times;10<sup>&minus;4</sup> s<sup>&minus;1</sup>","3.0&times;10<sup>&minus;4</sup> s<sup>&minus;1</sup> (unchanged)","1.5&times;10<sup>&minus;4</sup> s<sup>&minus;1</sup>"], a:0,
+ e:"Two-point form: ln(k<sub>2</sub>/k<sub>1</sub>) = &minus;(E<sub>a</sub>/R)(1/T<sub>2</sub> &minus; 1/T<sub>1</sub>). Convert to Kelvin: T<sub>1</sub>=298 K, T<sub>2</sub>=323 K. ln(k<sub>2</sub>/k<sub>1</sub>) = &minus;(75000/8.314)(1/323 &minus; 1/298) = 2.334, so k<sub>2</sub> = k<sub>1</sub>e<sup>2.334</sup> = (3.0&times;10<sup>&minus;4</sup>)(10.3) = 3.1&times;10<sup>&minus;3</sup> s<sup>&minus;1</sup>. Rate constants grow exponentially with temperature, so even a 25&deg;C rise causes a 10-fold jump here."},
+{id:28, ch:16, t:"Collision Theory & Arrhenius Equation", s:"Claude Study Guide (two-point Arrhenius, solve for Ea)",
+ q:"A reaction's rate constant is 1.5&times;10<sup>&minus;3</sup> at 300. K and 4.9&times;10<sup>&minus;2</sup> at 350. K. What is the activation energy?",
+ c:["11 kJ/mol","61 kJ/mol","350 kJ/mol","8.3 kJ/mol"], a:1,
+ e:"E<sub>a</sub> = R&middot;ln(k<sub>2</sub>/k<sub>1</sub>) &divide; (1/T<sub>1</sub> &minus; 1/T<sub>2</sub>) = 8.314 &times; ln(4.9&times;10<sup>&minus;2</sup>/1.5&times;10<sup>&minus;3</sup>) &divide; (1/300 &minus; 1/350) = 8.314 &times; 3.487 &divide; 0.0004762 = 60,870 J/mol &asymp; 61 kJ/mol."},
+{id:29, ch:16, t:"Collision Theory & Arrhenius Equation", s:"Theories of Kinetics Ch 16 pt 4 (Sample Problem 16.9, real professor example)",
+ q:"For O<sub>3</sub>(g) + O(g) &rarr; 2O<sub>2</sub>(g), E<sub>a</sub>(forward) = 19 kJ/mol and &Delta;H<sub>rxn</sub> = &minus;392 kJ/mol. What is E<sub>a</sub>(reverse)?",
+ c:["373 kJ/mol","19 kJ/mol","411 kJ/mol","392 kJ/mol"], a:2,
+ e:"&Delta;H<sub>rxn</sub> = E<sub>a</sub>(fwd) &minus; E<sub>a</sub>(rev), so E<sub>a</sub>(rev) = E<sub>a</sub>(fwd) &minus; &Delta;H<sub>rxn</sub> = 19 &minus; (&minus;392) = 411 kJ/mol. Makes sense: this reaction is steeply exothermic (products far below reactants), so climbing back UP from products to the transition state takes far more energy than the small forward barrier."},
+{id:30, ch:16, t:"Collision Theory & Arrhenius Equation", s:"Claude Study Guide (energy diagram, ΔH from Ea)",
+ q:"A reaction has E<sub>a</sub>(forward) = 45 kJ/mol and E<sub>a</sub>(reverse) = 110 kJ/mol. What is &Delta;H<sub>rxn</sub>, and is the reaction exothermic or endothermic?",
+ c:["+65 kJ/mol; endothermic","&minus;65 kJ/mol; exothermic","+155 kJ/mol; endothermic","&minus;155 kJ/mol; exothermic"], a:1,
+ e:"&Delta;H<sub>rxn</sub> = E<sub>a</sub>(fwd) &minus; E<sub>a</sub>(rev) = 45 &minus; 110 = &minus;65 kJ/mol. Negative &Delta;H means exothermic: the products sit lower in energy than the reactants, so the reverse reaction faces a bigger energy hill than the forward reaction."},
+{id:31, ch:16, t:"Collision Theory & Arrhenius Equation", s:"Homework Ch 16, Q5 (qualitative Arrhenius reasoning)",
+ q:"A reaction's temperature is raised by 10% (in Kelvin). Because the Arrhenius equation is exponential rather than linear in T, how does the rate change?",
+ c:["The rate also rises by exactly 10%","The rate rises by MORE than 10%","The rate falls, since higher T increases entropy","The rate is completely unaffected by small T changes"], a:1,
+ e:"Because k depends on T through an exponential (e<sup>&minus;Ea/RT</sup>), a modest percentage increase in absolute temperature produces a disproportionately larger increase in k (and hence rate) &mdash; never a matching linear response. The same logic applies to a catalyst lowering E<sub>a</sub> by 10%: the rate increase is also more than 10%, since E<sub>a</sub> sits in the exponent too."},
+
+// ===== Ch 16 — Reaction Mechanisms =====
+{id:32, ch:16, t:"Reaction Mechanisms", s:"Homework Ch 16, Q14 (molecularity, verified)",
+ q:"What is the molecularity of the elementary step H<sub>2</sub>(g) + 2NO(g) &rarr; N<sub>2</sub>O(g) + H<sub>2</sub>O(g)?",
+ c:["Unimolecular","Bimolecular","Termolecular","Cannot be determined"], a:2,
+ e:"Molecularity = the total number of reactant PARTICLES in that one elementary step: 1 H<sub>2</sub> + 2 NO (the coefficient 2 means two separate NO molecules) = 3 reactant particles colliding at once = termolecular. Termolecular steps are rare/slow because a 3-body simultaneous collision is unlikely."},
+{id:33, ch:16, t:"Reaction Mechanisms", s:"Homework Ch 16, Q14 (molecularity, verified)",
+ q:"What is the molecularity of the elementary step CFCl<sub>3</sub>(g) &rarr; CFCl<sub>2</sub>(g) + Cl(g)?",
+ c:["Unimolecular","Bimolecular","Termolecular","Zero molecular"], a:0,
+ e:"Only one reactant particle (CFCl<sub>3</sub>) is involved &mdash; it simply falls apart. One reactant particle = unimolecular, regardless of how many products form."},
+{id:34, ch:16, t:"Reaction Mechanisms", s:"Reaction Mechanisms Ch 16 pt 5 (elementary step rate laws)",
+ q:"For an ELEMENTARY step (and only an elementary step), how is its rate law determined?",
+ c:["Always experimentally, exactly like an overall reaction","Directly from the step's own stoichiometric coefficients used as the reaction orders","It cannot be determined at all","By dividing the overall rate law by the number of steps"], a:1,
+ e:"This is the one case where you CAN read reaction orders straight off the coefficients: for an elementary step (a single molecular event), reaction order equals molecularity. This does NOT apply to the overall, multi-step reaction &mdash; only to each individual elementary step."},
+{id:35, ch:16, t:"Reaction Mechanisms", s:"Reaction Mechanisms Ch 16 pt 5 (rate-determining step)",
+ q:"A two-step mechanism for 2NO<sub>2</sub>(g) + F<sub>2</sub>(g) &rarr; 2NO<sub>2</sub>F(g) is: Step 1 (slow): NO<sub>2</sub> + F<sub>2</sub> &rarr; NO<sub>2</sub>F + F; Step 2 (fast): F + NO<sub>2</sub> &rarr; NO<sub>2</sub>F. What is the overall experimental rate law?",
+ c:["Rate = k[NO<sub>2</sub>]<sup>2</sup>[F<sub>2</sub>]","Rate = k[NO<sub>2</sub>][F<sub>2</sub>]","Rate = k[F]","Rate = k[NO<sub>2</sub>][F]"], a:1,
+ e:"The rate-determining (slowest) step controls the overall rate law. Step 1 is elementary and slow, so its rate law (using its own coefficients) becomes the overall rate law: Rate = k[NO<sub>2</sub>][F<sub>2</sub>]. Step 2 happens so fast afterward that it doesn't limit the overall speed."},
+{id:36, ch:16, t:"Reaction Mechanisms", s:"Homework Ch 16, Q13 (intermediates, verified)",
+ q:"Mechanism: (1) H<sub>2</sub> + 2NO &rarr; N<sub>2</sub>O + H<sub>2</sub>O; (2) H<sub>2</sub> + N<sub>2</sub>O &rarr; N<sub>2</sub> + H<sub>2</sub>O. What species is the reaction intermediate?",
+ c:["H<sub>2</sub>","NO","N<sub>2</sub>O","H<sub>2</sub>O"], a:2,
+ e:"N<sub>2</sub>O is produced in step 1 and fully consumed in step 2 &mdash; it never appears in the overall balanced equation (2H<sub>2</sub> + 2NO &rarr; N<sub>2</sub> + 2H<sub>2</sub>O). An intermediate is made in an early step and used up in a later one; it cancels out when you sum the elementary steps, exactly like the 'A + E + B &rarr; C + D + E' cancellation shown in the study guide."},
+{id:37, ch:16, t:"Reaction Mechanisms", s:"Homework Ch 16, Q11 (rate law from a slow first step, verified)",
+ q:"For NO(g) + Br<sub>2</sub>(g) &rarr; NOBr<sub>2</sub>(g) [k<sub>1</sub>], then NOBr<sub>2</sub>(g) + NO(g) &rarr; 2NOBr(g) [k<sub>2</sub>], with k<sub>1</sub> &laquo; k<sub>2</sub> (step 1 is much slower), what is the experimentally observed rate law for 2NO(g) + Br<sub>2</sub>(g) &rarr; 2NOBr(g)?",
+ c:["Rate = k[NO]<sup>2</sup>[Br<sub>2</sub>]","Rate = k[NO][Br<sub>2</sub>]","Rate = k[NOBr<sub>2</sub>][NO]","Rate = k[NO]<sup>2</sup>"], a:1,
+ e:"k<sub>1</sub> &laquo; k<sub>2</sub> means step 1 is the slow, rate-determining step. Its rate law (using its own coefficients, since it's elementary) is Rate = k<sub>1</sub>[NO][Br<sub>2</sub>] &mdash; this becomes the overall observed rate law, even though the overall balanced equation has a coefficient of 2 in front of NO."},
+{id:38, ch:16, t:"Reaction Mechanisms", s:"Study Guide Ch 16 (mechanism validity example)",
+ q:"A proposed 2-step mechanism for A + B &rarr; C + D is: Step 1: A &rarr; D + E; Step 2: E + B &rarr; C. Is this a valid mechanism?",
+ c:["No, the steps don't add up to the overall reaction","Yes &mdash; adding the steps and canceling the intermediate E gives exactly A + B &rarr; C + D","No, because E never appears in either step's products and reactants correctly","Cannot be evaluated without rate data"], a:1,
+ e:"Sum the steps: A + E + B &rarr; D + C + E. E appears as both a product (step 1) and reactant (step 2), so it cancels, leaving A + B &rarr; C + D &mdash; matching the overall equation. This is the first of three validity checks (steps must sum correctly); it still doesn't prove the mechanism is correct, since a mechanism is only a testable hypothesis."},
+{id:39, ch:16, t:"Reaction Mechanisms", s:"Rate Law Ch 16 pt 2 / Study Guide Ch 16",
+ q:"Why can't you determine a reaction's overall rate law just by looking at the balanced OVERALL chemical equation?",
+ c:["Because the overall equation only describes net stoichiometry, not the actual step-by-step molecular mechanism &mdash; orders must come from experimental data (or a known elementary step)","Because balanced equations are frequently written incorrectly","Because rate laws only apply to gas-phase reactions","Because coefficients are always fractional"], a:0,
+ e:"A balanced overall equation just tracks atoms in vs. atoms out; it says nothing about how many steps the reaction actually takes or which step is slow. Only a genuinely elementary reaction has order = coefficient. For any multi-step (non-elementary) reaction, you need experimental kinetics data — like the method of initial rates — to find the true rate law."},
+
+// ===== Ch 16 — Catalysts =====
+{id:40, ch:16, t:"Catalysts", s:"Catalysts Ch 16 pt 6",
+ q:"What does a catalyst do to speed up a reaction?",
+ c:["It increases the concentration of reactants","It provides an alternative reaction pathway with a lower overall activation energy","It raises the temperature of the reaction mixture","It shifts the equilibrium toward more products"], a:1,
+ e:"A catalyst offers a different mechanism (often with different, lower-energy transition states) that requires less activation energy to reach. Lower E<sub>a</sub> means a larger fraction of collisions succeed at any given temperature, so the reaction speeds up &mdash; without the catalyst itself being consumed."},
+{id:41, ch:16, t:"Catalysts", s:"Catalysts Ch 16 pt 6 / Study Guide Ch 17",
+ q:"How does adding a catalyst affect &Delta;H<sub>rxn</sub> and the equilibrium constant K of a reaction?",
+ c:["It changes both &Delta;H<sub>rxn</sub> and K","It changes &Delta;H<sub>rxn</sub> but not K","It has no effect on either &Delta;H<sub>rxn</sub> or K &mdash; it only changes how FAST equilibrium is reached","It changes K but not &Delta;H<sub>rxn</sub>"], a:2,
+ e:"A catalyst lowers the activation energy for both the forward and reverse reactions equally, so it speeds up the approach to equilibrium but does not change the reactants' or products' energies, &Delta;H<sub>rxn</sub>, the equilibrium position, or K. This is exactly what the Chapter 17 study guide is testing when it asks 'what effect does using a catalyst have on the equilibrium?'"},
+{id:42, ch:16, t:"Catalysts", s:"Catalysts Ch 16 pt 6",
+ q:"A catalyst is added to a reversible reaction at equilibrium. What happens to the forward and reverse reaction rates?",
+ c:["Only the forward rate increases","Only the reverse rate increases","Both the forward and reverse rates increase by the same proportion","Neither rate changes; only the yield improves"], a:2,
+ e:"Because a catalyst lowers the activation energy for both directions of the reaction pathway, it speeds up the forward AND reverse reactions equally. That's precisely why K (which depends on the ratio of forward/reverse rate constants) stays unchanged."},
+{id:43, ch:16, t:"Catalysts", s:"Catalysts Ch 16 pt 6 (H2O2 decomposition)",
+ q:"Br<sup>&minus;</sup> catalyzes the decomposition of H<sub>2</sub>O<sub>2</sub>(aq) while staying dissolved in the same aqueous solution throughout. What type of catalyst is this?",
+ c:["Heterogeneous catalyst","Homogeneous catalyst","Enzyme","Biological catalyst"], a:1,
+ e:"A homogeneous catalyst exists in the SAME phase as the reactants (here, both Br<sup>&minus;</sup> and H<sub>2</sub>O<sub>2</sub> are dissolved in the aqueous solution). A heterogeneous catalyst, by contrast, is in a different phase, like a solid metal catalyzing a gas-phase hydrogenation."},
+{id:44, ch:16, t:"Catalysts", s:"Catalysts Ch 16 pt 6 (enzyme vocabulary)",
+ q:"In enzyme catalysis, what is the 'substrate'?",
+ c:["The enzyme's active site","The reactant molecule that binds to the enzyme's active site","A synonym for the enzyme itself","The catalyst's solvent"], a:1,
+ e:"The substrate is the reactant that binds into the enzyme's active site. The lock-and-key model treats the active site as a fixed shape matching its substrate; the induced-fit model instead has the active site flex to bind the substrate more effectively — but in both models, the enzyme is the catalyst and the substrate is what it acts on."},
+{id:45, ch:16, t:"Catalysts", s:"Homework Ch 16, Q5 (qualitative Arrhenius/catalyst reasoning)",
+ q:"A catalyst lowers a reaction's activation energy by 10% (say, from 37.0 to 33.3 kJ/mol) while temperature stays the same. How does the rate change?",
+ c:["The rate decreases by 10%","The rate stays exactly the same, since only temperature affects rate","The rate increases by more than 10%","The rate increases by exactly 10%"], a:2,
+ e:"E<sub>a</sub> sits in the exponent of the Arrhenius equation (k = Ae<sup>&minus;Ea/RT</sup>), so even a modest percentage decrease in E<sub>a</sub> produces a disproportionately larger increase in k — never a matching 10% bump. This is the same exponential-sensitivity idea used when temperature itself is raised."},
+
+// ===== Ch 17 — Equilibrium Constant Expressions =====
+{id:46, ch:17, t:"Equilibrium Constant Expressions", s:"June 3 Zoom Meeting (K definition)",
+ q:"For the general reaction aA(g) + bB(g) &#8646; cC(g) + dD(g), what is the correct equilibrium constant expression, K<sub>c</sub>?",
+ c:["K<sub>c</sub> = [A]<sup>a</sup>[B]<sup>b</sup> / [C]<sup>c</sup>[D]<sup>d</sup>","K<sub>c</sub> = [C]<sup>c</sup>[D]<sup>d</sup> / [A]<sup>a</sup>[B]<sup>b</sup>","K<sub>c</sub> = [C][D] / [A][B]","K<sub>c</sub> = a[A] + b[B] &minus; c[C] &minus; d[D]"], a:1,
+ e:"Products (right side) go on top, reactants (left side) on the bottom, each raised to its own balanced-equation coefficient as an exponent. Never use the coefficients as multipliers — they are always exponents in the equilibrium expression."},
+{id:47, ch:17, t:"Equilibrium Constant Expressions", s:"Equilibrium K and Q Ch 17 pt 1 (heterogeneous equilibria)",
+ q:"For the heterogeneous equilibrium CaCO<sub>3</sub>(s) &#8646; CaO(s) + CO<sub>2</sub>(g), what is the correct K<sub>c</sub> expression?",
+ c:["K<sub>c</sub> = [CaO][CO<sub>2</sub>] / [CaCO<sub>3</sub>]","K<sub>c</sub> = [CO<sub>2</sub>]","K<sub>c</sub> = [CaCO<sub>3</sub>] / [CaO][CO<sub>2</sub>]","K<sub>c</sub> = [CaO] / [CaCO<sub>3</sub>]"], a:1,
+ e:"Pure solids and pure liquids have an unchanging, defined 'concentration' (moles per liter of the pure substance) and are always OMITTED from equilibrium expressions. With both CaCO<sub>3</sub>(s) and CaO(s) dropped, only the gas CO<sub>2</sub> remains: K<sub>c</sub> = [CO<sub>2</sub>]."},
+{id:48, ch:17, t:"Equilibrium Constant Expressions", s:"Homework Ch 17 pt 1, Q4 (verified: K=977&rarr;1.02×10⁻³)",
+ q:"At a certain temperature, K = 977 for H<sub>2</sub>(g) + I<sub>2</sub>(g) &#8646; 2HI(g). What is K for the REVERSE reaction, 2HI(g) &#8646; H<sub>2</sub>(g) + I<sub>2</sub>(g)?",
+ c:["977","&minus;977","1.02&times;10<sup>&minus;3</sup>","488.5"], a:2,
+ e:"Flipping a reaction inverts its equilibrium constant: K<sub>reverse</sub> = 1/K<sub>forward</sub> = 1/977 = 1.02&times;10<sup>&minus;3</sup>. A large forward K (products favored) correctly becomes a small reverse K (reactants favored for the reverse reaction) — that's the same equilibrium position, just described from the other direction."},
+{id:49, ch:17, t:"Equilibrium Constant Expressions", s:"Homework Ch 17 pt 1, Q5 (verified: K=1.4&rarr;K³=2.7)",
+ q:"At a certain temperature, K = 1.4 for H<sub>2</sub>(g) + I<sub>2</sub>(g) &#8646; 2HI(g). What is K for 3H<sub>2</sub>(g) + 3I<sub>2</sub>(g) &#8646; 6HI(g)?",
+ c:["4.2 (K &times; 3)","1.4 (unchanged)","2.7 (K&sup3;)","0.47 (K &divide; 3)"], a:2,
+ e:"When every coefficient in a reaction is multiplied by n, the new K equals the original K raised to the n-th power (never K &times; n). Here n = 3: K<sub>new</sub> = (1.4)&sup3; = 2.7."},
+{id:50, ch:17, t:"Equilibrium Constant Expressions", s:"Homework Ch 17 pt 1, Q7 (verified, heterogeneous with charges)",
+ q:"Write the concentration equilibrium expression for Cr<sub>2</sub>O<sub>7</sub><sup>2&minus;</sup>(aq) + 6I<sup>&minus;</sup>(aq) + 14H<sup>+</sup>(aq) &rarr; 3I<sub>2</sub>(s) + 2Cr<sup>3+</sup>(aq) + 7H<sub>2</sub>O(l).",
+ c:["K = [Cr<sup>3+</sup>]<sup>2</sup> / ([Cr<sub>2</sub>O<sub>7</sub><sup>2&minus;</sup>][I<sup>&minus;</sup>]<sup>6</sup>[H<sup>+</sup>]<sup>14</sup>)","K = [Cr<sup>3+</sup>]<sup>2</sup>[I<sub>2</sub>]<sup>3</sup>[H<sub>2</sub>O]<sup>7</sup> / ([Cr<sub>2</sub>O<sub>7</sub><sup>2&minus;</sup>][I<sup>&minus;</sup>]<sup>6</sup>[H<sup>+</sup>]<sup>14</sup>)","K = 2[Cr<sup>3+</sup>] / (6[I<sup>&minus;</sup>] + 14[H<sup>+</sup>])","K = [Cr<sub>2</sub>O<sub>7</sub><sup>2&minus;</sup>][I<sup>&minus;</sup>]<sup>6</sup>[H<sup>+</sup>]<sup>14</sup> / [Cr<sup>3+</sup>]<sup>2</sup>"], a:0,
+ e:"I<sub>2</sub>(s) is a pure solid and H<sub>2</sub>O(l) is the pure liquid solvent here, so both are omitted. Only the aqueous species remain, each raised to its coefficient: products (Cr<sup>3+</sup>, squared for its coefficient of 2) over reactants (Cr<sub>2</sub>O<sub>7</sub><sup>2&minus;</sup>, I<sup>&minus;</sup> to the 6th, H<sup>+</sup> to the 14th)."},
+{id:51, ch:17, t:"Equilibrium Constant Expressions", s:"Study Guide Ch 17 (value of K)",
+ q:"A reaction has K = 2.00&times;10<sup>&minus;3</sup>. At equilibrium, is the reaction favoring reactants or products?",
+ c:["Products, since K is a positive number","Reactants — a small K (&laquo; 1) means little product forms before equilibrium is reached","Neither — equal amounts of reactants and products are present","Cannot be determined without knowing the reaction"], a:1,
+ e:"K &laquo; 1 means the equilibrium mixture contains mostly reactants (very little conversion to product happens before the forward and reverse rates equalize). This directly mirrors the professor's study guide example comparing K = 200 (favors products) against K = 2.00&times;10<sup>&minus;3</sup> (favors reactants)."},
+{id:52, ch:17, t:"Equilibrium Constant Expressions", s:"Homework Ch 17 pt 1, Q9 (verified, Kp expression)",
+ q:"Write the pressure equilibrium constant expression for 2Cl<sub>2</sub>(g) + 2H<sub>2</sub>O(g) &rarr; 4HCl(g) + O<sub>2</sub>(g).",
+ c:["K<sub>p</sub> = P<sub>HCl</sub><sup>4</sup>P<sub>O2</sub> / (P<sub>Cl2</sub><sup>2</sup>P<sub>H2O</sub><sup>2</sup>)","K<sub>p</sub> = P<sub>Cl2</sub><sup>2</sup>P<sub>H2O</sub><sup>2</sup> / (P<sub>HCl</sub><sup>4</sup>P<sub>O2</sub>)","K<sub>p</sub> = 4P<sub>HCl</sub> + P<sub>O2</sub> &minus; 2P<sub>Cl2</sub> &minus; 2P<sub>H2O</sub>","K<sub>p</sub> = P<sub>HCl</sub>P<sub>O2</sub> / (P<sub>Cl2</sub>P<sub>H2O</sub>)"], a:0,
+ e:"K<sub>p</sub> follows the same products-over-reactants pattern as K<sub>c</sub>, but with partial pressures instead of concentrations, each still raised to its balanced-equation coefficient: HCl to the 4th and O<sub>2</sub> to the 1st on top; Cl<sub>2</sub> and H<sub>2</sub>O each squared on the bottom."},
+
+// ===== Ch 17 — Reaction Quotient (Q vs K) =====
+{id:53, ch:17, t:"Reaction Quotient (Q vs K)", s:"June 3 Zoom Meeting (verified: Q=0.033, K=0.250)",
+ q:"For A(g) + 2B(g) &#8646; C(g) + D(g), Q = 0.033 and K = 0.250. Which direction will the reaction proceed?",
+ c:["To the left, making more reactants","To the right, making more products","No net change; the system is already at equilibrium","Impossible to say without concentrations"], a:1,
+ e:"Q &lt; K means the current product/reactant ratio is too low compared to equilibrium — the reaction must make MORE product (shift right) until Q rises to equal K. Remember: 'Q needs to grow to reach K' when Q &lt; K, so it shifts toward products."},
+{id:54, ch:17, t:"Reaction Quotient (Q vs K)", s:"June 3 Zoom Meeting (verified: Q=35, K=3.3)",
+ q:"For A(g) + B(g) &#8646; 2C(g), Q = 35 and K = 3.3. Which direction will the reaction proceed?",
+ c:["To the right, making more product C","To the left, making more reactants A and B","No net change","The reaction is impossible"], a:1,
+ e:"Q &gt; K means there's currently too much product relative to equilibrium — the reaction shifts LEFT (reverse direction) to consume some product and regenerate reactants, until Q falls back down to K."},
+{id:55, ch:17, t:"Reaction Quotient (Q vs K)", s:"Claude Study Guide (Q calculation)",
+ q:"For A(g) + 2B(g) &#8646; C(g), K = 2.0. At some moment, [A] = 0.30 M, [B] = 0.50 M, [C] = 0.20 M. What is Q, and which way does the reaction shift?",
+ c:["Q = 0.67; shifts right (toward products)","Q = 2.7; shifts left (toward reactants)","Q = 2.0; already at equilibrium","Q = 1.3; shifts right"], a:1,
+ e:"Q = [C]/([A][B]&sup2;) = 0.20/(0.30 &times; 0.50&sup2;) = 0.20/(0.30 &times; 0.25) = 0.20/0.075 = 2.7. Since Q (2.7) &gt; K (2.0), the reaction shifts left, converting some C back into A and B until Q drops to 2.0."},
+{id:56, ch:17, t:"Reaction Quotient (Q vs K)", s:"Homework Ch 17 pt 1, Q1 (verified: K≈1 case)",
+ q:"K = 1.2 for H<sub>2</sub>(g) + I<sub>2</sub>(g) &#8646; 2HI(g). A vessel is filled with only H<sub>2</sub> and I<sub>2</sub> (no HI yet). What can you say about the equilibrium mixture's composition?",
+ c:["There will be very little H<sub>2</sub> and I<sub>2</sub> left","There will be very little HI formed","Neither of those extremes is true — since K is close to 1, you'll get an appreciable, comparable mix of both reactants and products","The reaction cannot reach equilibrium"], a:2,
+ e:"K values far from 1 (very large or very small) signal a lopsided equilibrium favoring one side. But K &asymp; 1 (like 1.2) means neither the forward nor reverse reaction is strongly favored — at equilibrium you'll find meaningful amounts of both reactants and products, not an extreme in either direction."},
+{id:57, ch:17, t:"Reaction Quotient (Q vs K)", s:"Homework Ch 17 pt 1, Q3 (verified: small K)",
+ q:"K = 0.0025 for NO<sub>3</sub>(g) + NO(g) &#8646; 2NO<sub>2</sub>(g). A vessel starts with only NO<sub>3</sub> and NO. What does this small K tell you about the equilibrium mixture?",
+ c:["There will be very little NO<sub>3</sub> and NO left","There will be very little NO<sub>2</sub> formed — the equilibrium strongly favors the reactants","The mixture will be roughly 50/50","There will be no reactants left at all"], a:1,
+ e:"K &laquo; 1 (0.0025 is far below 1) means the equilibrium position sits heavily toward the reactant side: only a small amount of NO<sub>2</sub> forms before the forward and reverse rates equalize, leaving most of the NO<sub>3</sub> and NO unreacted."},
+{id:58, ch:17, t:"Reaction Quotient (Q vs K)", s:"Homework Ch 17 pt 1, Q2 (verified: no reaction goes to 100%)",
+ q:"NO<sub>2</sub>(g) + CO(g) &rarr; NO(g) + CO<sub>2</sub>(g). A flask starts with 85.0 mmol NO<sub>2</sub> and 85.0 mmol CO. How much NO<sub>2</sub> remains at equilibrium?",
+ c:["None — the reaction goes to completion","85.0 mmol — no reaction occurs at all","Some, but less than 85.0 mmol","More than 85.0 mmol"], a:2,
+ e:"No reversible reaction at equilibrium goes to 100% completion (that would require K = &infin;) nor stays at 0% conversion (K = 0). Some finite, nonzero amount of NO<sub>2</sub> is always consumed before equilibrium is reached, but never all of it — the answer must be strictly between 0 and the starting 85.0 mmol."},
+
+// ===== Ch 17 — Kc and Kp =====
+{id:59, ch:17, t:"Kc and Kp", s:"Equilibrium K and Q Ch 17 pt 1 (Kc/Kp relationship)",
+ q:"The relationship between K<sub>p</sub> and K<sub>c</sub> is K<sub>p</sub> = K<sub>c</sub>(RT)<sup>&Delta;n<sub>gas</sub></sup>. Under what condition does K<sub>p</sub> = K<sub>c</sub> exactly?",
+ c:["Only at 273 K","Only when all reactants and products are gases","When &Delta;n<sub>gas</sub> = 0 (equal moles of gas on both sides)","K<sub>p</sub> and K<sub>c</sub> are always numerically equal"], a:2,
+ e:"(RT)<sup>&Delta;n</sup> becomes (RT)<sup>0</sup> = 1 exactly when the moles of gaseous product equal the moles of gaseous reactant (&Delta;n<sub>gas</sub> = 0), making K<sub>p</sub> and K<sub>c</sub> numerically identical. For any other &Delta;n<sub>gas</sub>, they differ."},
+{id:60, ch:17, t:"Kc and Kp", s:"Claude Study Guide (Kp to Kc conversion)",
+ q:"NH<sub>4</sub>HS(s) &#8646; NH<sub>3</sub>(g) + H<sub>2</sub>S(g) has K<sub>p</sub> = 0.108 at 25&deg;C (298 K). What is K<sub>c</sub>?",
+ c:["0.108 (unchanged)","1.80&times;10<sup>&minus;4</sup>","2.64","647"], a:1,
+ e:"&Delta;n<sub>gas</sub> = 2 (2 mol gas product, 0 mol gas reactant since NH<sub>4</sub>HS is a solid). K<sub>c</sub> = K<sub>p</sub> &divide; (RT)<sup>&Delta;n</sup> = 0.108 &divide; (0.0821 &times; 298)<sup>2</sup> = 0.108 &divide; 598.5 = 1.80&times;10<sup>&minus;4</sup>. Using R = 0.0821 L&middot;atm/mol&middot;K keeps units consistent since K<sub>p</sub> is defined using pressures in atm."},
+{id:61, ch:17, t:"Kc and Kp", s:"Claude Study Guide (Kp from partial pressures)",
+ q:"For 2SO<sub>2</sub>(g) + O<sub>2</sub>(g) &#8646; 2SO<sub>3</sub>(g), equilibrium partial pressures are P<sub>SO2</sub> = 0.20 atm, P<sub>O2</sub> = 0.15 atm, P<sub>SO3</sub> = 0.90 atm. What is K<sub>p</sub>?",
+ c:["27","0.0067","135","4.0"], a:2,
+ e:"K<sub>p</sub> = P<sub>SO3</sub><sup>2</sup> / (P<sub>SO2</sub><sup>2</sup>P<sub>O2</sub>) = (0.90)<sup>2</sup> / [(0.20)<sup>2</sup>(0.15)] = 0.81 / (0.04 &times; 0.15) = 0.81/0.0060 = 135. Just like K<sub>c</sub>, plug equilibrium values straight into the coefficient-exponent expression — no unit conversion needed since everything is already in the same pressure units."},
+{id:62, ch:17, t:"Kc and Kp", s:"Homework Ch 17 pt 1, Q8 (style match: Kc from mass/volume)",
+ q:"For 2NOCl(g) &#8646; 2NO(g) + Cl<sub>2</sub>(g) in a 2.00 L flask at equilibrium: 8.14 g NOCl (M=65.46), 3.00 g NO (M=30.01), 5.32 g Cl<sub>2</sub> (M=70.90). What is K<sub>c</sub> (2 sig figs)?",
+ c:["0.024","41","0.62","1.6"], a:0,
+ e:"<b>Step 1 &mdash; moles &rarr; molarity (&divide; 2.00 L):</b> [NOCl] = (8.14/65.46)/2.00 = 0.0622 M; [NO] = (3.00/30.01)/2.00 = 0.0500 M; [Cl<sub>2</sub>] = (5.32/70.90)/2.00 = 0.0375 M.<br><b>Step 2 &mdash; plug into K<sub>c</sub> = [NO]<sup>2</sup>[Cl<sub>2</sub>]/[NOCl]<sup>2</sup>:</b> (0.0500)<sup>2</sup>(0.0375) / (0.0622)<sup>2</sup> = (0.0000938)/(0.00387) = 0.024."},
+{id:63, ch:17, t:"Kc and Kp", s:"Equilibrium K and Q Ch 17 pt 1 (Δn definition)",
+ q:"In the formula K<sub>p</sub> = K<sub>c</sub>(RT)<sup>&Delta;n<sub>gas</sub></sup>, how is &Delta;n<sub>gas</sub> calculated?",
+ c:["Total moles of ALL species (products + reactants) in the balanced equation","(moles of gaseous product) &minus; (moles of gaseous reactant), counting ONLY gas-phase species","(moles of reactant) &minus; (moles of product), including solids and liquids","It is always equal to 1"], a:1,
+ e:"Only gas-phase species count toward &Delta;n<sub>gas</sub> — solids, liquids, and dissolved (aqueous) species are ignored, exactly as they're dropped from the equilibrium expression itself. &Delta;n<sub>gas</sub> = (sum of gas product coefficients) &minus; (sum of gas reactant coefficients), and it can be positive, negative, or zero."},
+{id:64, ch:17, t:"Kc and Kp", s:"Equilibrium K and Q Ch 17 pt 1 (R units for Kp)",
+ q:"When converting between K<sub>p</sub> and K<sub>c</sub> and pressures are expressed in atmospheres, which value of R should be used?",
+ c:["8.314 J/mol&middot;K","0.0821 L&middot;atm/mol&middot;K","62.4 L&middot;torr/mol&middot;K","1.987 cal/mol&middot;K"], a:1,
+ e:"Since K<sub>p</sub> problems almost always express partial pressure in atm, R = 0.0821 L&middot;atm/mol&middot;K keeps the units consistent in (RT)<sup>&Delta;n</sup>. Using R = 8.314 J/mol&middot;K (the value used for Arrhenius/thermodynamics problems in Joules) here would give a wildly wrong numeric answer."},
+
+// ===== Ch 17 — ICE Tables & Solving Equilibrium Problems =====
+{id:65, ch:17, t:"ICE Tables & Solving Equilibrium", s:"June 4 ICE Tables Zoom Meeting",
+ q:"In an ICE table, what do the three rows I, C, and E stand for?",
+ c:["Ion, Charge, Element","Initial, Change, Equilibrium","Increase, Constant, End","Ionic, Covalent, Equilibrium"], a:1,
+ e:"ICE tables track a species' concentration (or pressure) at three stages: the Initial amount before any reaction, the Change as the reaction proceeds toward equilibrium (usually written using an unknown x, scaled by stoichiometric coefficients), and the final Equilibrium amount (Initial + Change)."},
+{id:66, ch:17, t:"ICE Tables & Solving Equilibrium", s:"Homework Ch 17 pt 2, Q2 (verified, ICE table setup)",
+ q:"A 250. mL flask is filled with 0.40 mol I<sub>2</sub> and 0.30 mol HI (no H<sub>2</sub>) for H<sub>2</sub>(g) + I<sub>2</sub>(g) &#8646; 2HI(g). Using x for the change in [I<sub>2</sub>], what is the correct 'Change' row of the ICE table?",
+ c:["[H<sub>2</sub>]: +x, [I<sub>2</sub>]: +x, [HI]: &minus;2x","[H<sub>2</sub>]: &minus;x, [I<sub>2</sub>]: &minus;x, [HI]: +2x","[H<sub>2</sub>]: +x, [I<sub>2</sub>]: &minus;x, [HI]: &minus;2x","[H<sub>2</sub>]: +2x, [I<sub>2</sub>]: +x, [HI]: &minus;x"], a:0,
+ e:"Since the flask starts with ZERO H<sub>2</sub>, the reaction must run in the FORWARD direction to reach equilibrium — H<sub>2</sub> and I<sub>2</sub> are produced (+x each, matching their 1:1 coefficients) while HI is consumed (&minus;2x, since its coefficient is 2). The sign of x always depends on which direction the reaction must shift from the given starting point, not on which side is 'reactants' by default."},
+{id:67, ch:17, t:"ICE Tables & Solving Equilibrium", s:"June 4 ICE Tables Zoom Meeting (verified, perfect-square trick)",
+ q:"H<sub>2</sub>(g) + F<sub>2</sub>(g) &#8646; 2HF(g), K = 100. A 2.00 L flask starts with 2.00 mol H<sub>2</sub> and 2.00 mol F<sub>2</sub> (no HF). Since [H<sub>2</sub>]&#8320; = [F<sub>2</sub>]&#8320; = 1.00 M, the K expression becomes a perfect square: K = [2x/(1&minus;x)]&sup2;. What is x?",
+ c:["x = 0.500","x = 0.833","x = 0.909","x = 1.00"], a:1,
+ e:"Taking the square root of both sides: 2x/(1&minus;x) = &radic;100 = 10. Solving: 2x = 10 &minus; 10x &rarr; 12x = 10 &rarr; x = 0.833. When both reactants start at equal concentration and only one product forms, the K expression often reduces to a perfect square, letting you skip the quadratic formula entirely by taking a square root."},
+{id:68, ch:17, t:"ICE Tables & Solving Equilibrium", s:"June 4 ICE Tables Zoom Meeting (verified, same problem)",
+ q:"Continuing the H<sub>2</sub> + F<sub>2</sub> &#8646; 2HF problem (x = 0.833, starting at 1.00 M each), what are the equilibrium concentrations of H<sub>2</sub>, F<sub>2</sub>, and HF?",
+ c:["[H<sub>2</sub>]=[F<sub>2</sub>]=0.167 M; [HF]=1.67 M","[H<sub>2</sub>]=[F<sub>2</sub>]=0.833 M; [HF]=0.167 M","[H<sub>2</sub>]=[F<sub>2</sub>]=1.00 M; [HF]=1.67 M","[H<sub>2</sub>]=[F<sub>2</sub>]=0.167 M; [HF]=0.833 M"], a:0,
+ e:"[H<sub>2</sub>] = [F<sub>2</sub>] = 1.00 &minus; x = 1.00 &minus; 0.833 = 0.167 M. [HF] = 2x = 2(0.833) = 1.67 M. <b>Check:</b> K = (1.67)&sup2;/[(0.167)(0.167)] = 2.79/0.0279 = 100 &check; — matches the given K = 100, confirming the arithmetic."},
+{id:69, ch:17, t:"ICE Tables & Solving Equilibrium", s:"June 4 ICE Tables Zoom Meeting (verified, linear ICE)",
+ q:"A(g) + 2B(g) &#8646; 2C(g). 3.00 mol A and 2.00 mol B are added to a 2.00 L container and allowed to reach equilibrium, where 0.500 mol C is present. What is K?",
+ c:["K = 0.0808","K = 1.375","K = 0.667","K = 12.4"], a:0,
+ e:"Molarities: [A]&#8320;=1.50 M, [B]&#8320;=1.00 M. From 2x = [C]<sub>eq</sub> = 0.250 M, x = 0.125 M. So [A]<sub>eq</sub> = 1.50&minus;0.125 = 1.375 M, [B]<sub>eq</sub> = 1.00&minus;2(0.125) = 0.750 M. K = [C]&sup2;/([A][B]&sup2;) = (0.250)&sup2;/[(1.375)(0.750)&sup2;] = 0.0625/0.7734 = 0.0808. Because the equilibrium amount of C was given directly, x could be found by simple algebra — no quadratic or approximation needed."},
+{id:70, ch:17, t:"ICE Tables & Solving Equilibrium", s:"Homework Ch 17 pt 2, Q4 / Study Guide Ch 17 (small-x approximation)",
+ q:"2NO(g) + Cl<sub>2</sub>(g) &#8646; 2NOCl(g), K<sub>p</sub> = 5.&times;10<sup>&minus;2</sup> (small). A vessel starts with 8.0 atm NO and 7.6 atm Cl<sub>2</sub>. Why might you be able to approximate the equilibrium pressures of NO and Cl<sub>2</sub> as still &asymp;8.0 atm and &asymp;7.6 atm, skipping the exact algebra?",
+ c:["Because K<sub>p</sub> is small, very little reaction occurs, so the change (x) is tiny compared to the large starting pressures — this is the 'small-x approximation'","Because pressure and concentration are unrelated","Because NO and Cl<sub>2</sub> are both diatomic","Because the reaction is exothermic"], a:0,
+ e:"When K is small relative to the initial concentrations/pressures, only a small amount of reactant converts to product, so x is small enough that (initial &minus; x) &asymp; initial. This 'small-x approximation' avoids solving a quadratic — but it must always be checked afterward (e.g., x should be &lt;5% of the initial value) to make sure the approximation was valid."},
+{id:71, ch:17, t:"ICE Tables & Solving Equilibrium", s:"June 4 ICE Tables Zoom Meeting (verified, quadratic case)",
+ q:"Solving an ICE table's quadratic equation for x gives two mathematical roots: x&#8314; = 1.67 M and x&minus; = 0.938 M, in a problem where the initial [H<sub>2</sub>] was 1.50 M. Which root is the physically valid answer, and why?",
+ c:["x&#8314; = 1.67 M, because larger values are always correct","x&minus; = 0.938 M, because x&#8314; = 1.67 M would make [H<sub>2</sub>]<sub>eq</sub> = 1.50&minus;1.67 = &minus;0.17 M, a physically impossible negative concentration","Both roots are equally valid","Neither root is valid; the problem has no solution"], a:1,
+ e:"A quadratic equation always produces two mathematical solutions, but only one can describe reality. Any root that would make an equilibrium concentration negative must be rejected outright — concentrations can never be less than zero. Always plug each root back into (initial &minus; x) and discard whichever one goes negative."},
+
+// ===== Ch 17 — Le Chatelier's Principle =====
+{id:72, ch:17, t:"Le Chatelier's Principle", s:"June 6 Zoom Meeting Le Chatelier (verified)",
+ q:"N<sub>2</sub>(g) + 3H<sub>2</sub>(g) &#8646; 2NH<sub>3</sub>(g) is at equilibrium. Extra H<sub>2</sub> gas is added. Which way does equilibrium shift, and what happens to N<sub>2</sub>?",
+ c:["Shifts left; N<sub>2</sub> increases","Shifts right; N<sub>2</sub> is consumed (decreases)","No shift; N<sub>2</sub> is unaffected","Shifts right; N<sub>2</sub> also increases"], a:1,
+ e:"Adding a reactant pushes the equilibrium position to the RIGHT (toward products) to partially counteract the disturbance, consuming some of the added H<sub>2</sub> along with some of the existing N<sub>2</sub>, and producing more NH<sub>3</sub>. Le Chatelier's Principle: the system shifts to relieve (but not fully cancel) the stress."},
+{id:73, ch:17, t:"Le Chatelier's Principle", s:"June 6 Zoom Meeting Le Chatelier (verified)",
+ q:"N<sub>2</sub>(g) + 3H<sub>2</sub>(g) &#8646; 2NH<sub>3</sub>(g) is at equilibrium. If the N<sub>2</sub> concentration is suddenly halved (some N<sub>2</sub> removed), which way does equilibrium shift?",
+ c:["Shifts right, toward more NH<sub>3</sub>","Shifts left, producing more N<sub>2</sub> and H<sub>2</sub> at the expense of some NH<sub>3</sub>","No shift occurs","The reaction stops entirely"], a:1,
+ e:"Removing a reactant is a stress that pulls the equilibrium LEFT (toward reactants) to partially replace what was taken away — some NH<sub>3</sub> converts back into N<sub>2</sub> and H<sub>2</sub>. This is the mirror image of adding reactant, which shifts right."},
+{id:74, ch:17, t:"Le Chatelier's Principle", s:"June 6 Zoom Meeting Le Chatelier (verified)",
+ q:"N<sub>2</sub>(g) + 3H<sub>2</sub>(g) &#8646; 2NH<sub>3</sub>(g) is at equilibrium. Extra NH<sub>3</sub> (product) is added. Which way does equilibrium shift?",
+ c:["Shifts right, making even more NH<sub>3</sub>","Shifts left, consuming some of the added NH<sub>3</sub> and making more N<sub>2</sub> and H<sub>2</sub>","No shift; NH<sub>3</sub> has no effect","Shifts right, but only N<sub>2</sub> increases"], a:1,
+ e:"Adding a product is a stress that shifts equilibrium LEFT (toward reactants), converting some of the added NH<sub>3</sub> back into N<sub>2</sub> and H<sub>2</sub> to partially counteract the increase — the exact opposite response of adding a reactant."},
+{id:75, ch:17, t:"Le Chatelier's Principle", s:"June 6 Zoom Meeting Le Chatelier (verified, pressure/volume)",
+ q:"N<sub>2</sub>(g) + 3H<sub>2</sub>(g) &#8646; 2NH<sub>3</sub>(g) (4 mol gas &rarr; 2 mol gas) is at equilibrium. The container's volume is decreased (pressure increases). Which way does equilibrium shift?",
+ c:["Right, toward NH<sub>3</sub> — the side with FEWER moles of gas","Left, toward N<sub>2</sub> and H<sub>2</sub> — the side with MORE moles of gas","No shift, since only concentration changes matter, not pressure","It depends on temperature, not on mole counts"], a:0,
+ e:"Decreasing volume increases pressure and crowds the gas molecules. The equilibrium responds by shifting toward whichever side has FEWER total moles of gas, since that reduces the total number of gas particles and partially relieves the pressure increase. Here, 2 mol NH<sub>3</sub> < 4 mol (N<sub>2</sub>+H<sub>2</sub>), so it shifts right."},
+{id:76, ch:17, t:"Le Chatelier's Principle", s:"June 6 Zoom Meeting Le Chatelier (verified: Cl2+I2⇌2ICl)",
+ q:"Cl<sub>2</sub>(g) + I<sub>2</sub>(g) &#8646; 2ICl(g) is at equilibrium (2 mol gas on each side). If the pressure is increased (volume decreased), which way does equilibrium shift?",
+ c:["Right, toward ICl","Left, toward Cl<sub>2</sub> and I<sub>2</sub>","No shift — equal moles of gas (2 mol) on both sides means pressure changes don't favor either side","Shifts right only if a catalyst is present"], a:2,
+ e:"Since both sides of the equation have exactly 2 moles of gas, compressing the container doesn't make either side more 'crowded' relative to the other — there's no way to reduce total gas moles by shifting in either direction. Pressure/volume changes only shift equilibrium when the two sides have different total gas moles."},
+{id:77, ch:17, t:"Le Chatelier's Principle", s:"June 6 Zoom Meeting Le Chatelier (verified, exothermic)",
+ q:"N<sub>2</sub>(g) + 3H<sub>2</sub>(g) &#8646; 2NH<sub>3</sub>(g), &Delta;H<sub>rxn</sub> = &minus;46 kJ/mol (exothermic). If the temperature is RAISED, which way does equilibrium shift, and what happens to K?",
+ c:["Shifts right (more NH<sub>3</sub>); K increases","Shifts left (less NH<sub>3</sub>); K decreases","No shift; K is unaffected by temperature","Shifts right; K stays the same"], a:1,
+ e:"For an exothermic reaction, treat heat as a PRODUCT: A + B &#8646; C + D + energy. Raising temperature adds energy (like adding more 'product'), so equilibrium shifts LEFT toward reactants, and K decreases. This is exactly the ammonia synthesis trade-off the notes describe: raising T speeds up the reaction (kinetics) but hurts the yield (equilibrium) — improving one worsens the other."},
+{id:78, ch:17, t:"Le Chatelier's Principle", s:"Claude Study Guide (endothermic temperature shift)",
+ q:"For an ENDOTHERMIC reaction (&Delta;H<sub>rxn</sub> &gt; 0), what happens to the equilibrium position and K when temperature is raised?",
+ c:["Shifts left (toward reactants); K decreases","Shifts right (toward products); K increases","No shift; only rate changes","Shifts right; K decreases"], a:1,
+ e:"For an endothermic reaction, treat heat as a REACTANT: energy + A + B &#8646; C + D. Raising temperature is like adding more of that 'reactant,' so equilibrium shifts RIGHT toward products, and K increases. This is the opposite temperature response from an exothermic reaction."},
+{id:79, ch:17, t:"Le Chatelier's Principle", s:"Study Guide Ch 17 / Catalysts Ch 16 pt 6",
+ q:"A catalyst is added to a reaction sitting at equilibrium. According to Le Chatelier's Principle, does the equilibrium position shift?",
+ c:["Yes, it shifts toward more products","Yes, it shifts toward more reactants","No — a catalyst speeds up both the forward and reverse reactions equally, so equilibrium is reached faster, but K and the equilibrium concentrations don't change","It depends on whether the catalyst is homogeneous or heterogeneous"], a:2,
+ e:"This is explicitly called out in the Chapter 17 study guide. A catalyst is not one of the disturbances (concentration, pressure/volume, temperature) that shifts equilibrium — it only changes the PATH and speed of getting there, not the destination. Confusing 'faster' with 'more product' is a common exam trap."}
+];
+
+
+// ---------------- storage ----------------
+const LS_KEY = "chem1202_exam2_practice_v1";
+function defaultStore(){ return { learned:{}, history:[] }; }
+function loadStore(){
+  try{
+    const s = JSON.parse(localStorage.getItem(LS_KEY));
+    if(s && typeof s === "object" && s.learned && Array.isArray(s.history)) return s;
+  }catch(e){}
+  return defaultStore();
+}
+let store = loadStore();
+function saveStore(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(store)); }catch(e){} }
+
+// ---------------- helpers ----------------
+const $ = id => document.getElementById(id);
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function byId(id){ return QUESTIONS.find(q=>q.id===id); }
+function learnedCount(){ return Object.keys(store.learned).filter(k=>store.learned[k]).length; }
+const TOPICS = [...new Set(QUESTIONS.map(q=>q.t))];
+function show(screen){
+  ["screen-home","screen-quiz","screen-results"].forEach(s=>$(s).classList.add("hidden"));
+  $(screen).classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+let toastTimer = null;
+function toast(msg){
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove("show"), 2600);
+}
+
+// ---------------- home ----------------
+function renderHome(){
+  $("stat-total").textContent = QUESTIONS.length;
+  $("stat-learned").textContent = learnedCount();
+  const best = store.history.reduce((m,h)=>Math.max(m, Math.round(100*h.correct/h.total)), -1);
+  $("stat-best").textContent = best >= 0 ? best + "%" : "–";
+
+  // topic progress
+  const tl = $("topic-list");
+  tl.innerHTML = "";
+  TOPICS.forEach(t=>{
+    const qs = QUESTIONS.filter(q=>q.t===t);
+    const n = qs.filter(q=>store.learned[q.id]).length;
+    const ch = qs[0].ch;
+    const row = document.createElement("div");
+    row.className = "topic-row";
+    row.innerHTML = "<span>Ch " + ch + " · " + t + " <span class='muted'>(" + n + "/" + qs.length + " learned)</span></span>" +
+      "<span class='topic-bar'><div style='width:" + (100*n/qs.length) + "%'></div></span>";
+    tl.appendChild(row);
+  });
+
+  // pool note
+  updatePoolNote();
+
+  // history
+  const hb = $("history-box");
+  if(store.history.length === 0){
+    hb.innerHTML = "<p class='muted'>No sessions yet — results are saved on this computer automatically.</p>";
+  } else {
+    let rows = store.history.slice(-12).reverse().map(h=>{
+      const pct = Math.round(100*h.correct/h.total);
+      return "<tr><td>" + h.date + "</td><td>" + (h.mode==="exam"?"Exam":"Practice") + "</td><td>" + h.correct + "/" + h.total + "</td><td><b>" + pct + "%</b></td></tr>";
+    }).join("");
+    hb.innerHTML = "<table><thead><tr><th>When</th><th>Mode</th><th>Score</th><th>%</th></tr></thead><tbody>" + rows + "</tbody></table>";
+  }
+}
+function poolFor(includeLearned, chapter){
+  let pool = includeLearned ? QUESTIONS.slice() : QUESTIONS.filter(q=>!store.learned[q.id]);
+  if(chapter && chapter !== "all") pool = pool.filter(q=>String(q.ch)===String(chapter));
+  return pool;
+}
+function updatePoolNote(){
+  const inc = $("opt-include-learned").checked;
+  const chap = $("opt-chapter").value;
+  const pool = poolFor(inc, chap);
+  $("pool-note").textContent = pool.length + " question" + (pool.length===1?"":"s") + " available" + (inc ? "" : " (learned excluded)");
+}
+$("opt-include-learned").addEventListener("change", updatePoolNote);
+$("opt-chapter").addEventListener("change", updatePoolNote);
+
+$("btn-reset-learned").addEventListener("click", ()=>{
+  if(learnedCount()===0){ alert("Nothing is marked as learned yet."); return; }
+  if(confirm("Reset all " + learnedCount() + " learned marks? Questions will appear in sessions again.")){
+    store.learned = {}; saveStore(); renderHome();
+  }
+});
+$("btn-clear-history").addEventListener("click", ()=>{
+  if(store.history.length===0) return;
+  if(confirm("Delete all saved results?")){ store.history = []; saveStore(); renderHome(); }
+});
+
+// ---------------- download / upload results ----------------
+$("btn-download").addEventListener("click", ()=>{
+  const payload = {
+    app: "chem1202_exam2_practice",
+    exportedAt: new Date().toISOString(),
+    learned: store.learned,
+    history: store.history
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const stamp = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = "chem1202-exam2-results-" + stamp + ".json";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast("Results downloaded.");
+});
+
+$("btn-upload").addEventListener("click", ()=> $("file-upload").click());
+$("file-upload").addEventListener("change", (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      const data = JSON.parse(reader.result);
+      if(!data || typeof data !== "object") throw new Error("bad file");
+      const incomingLearned = (data.learned && typeof data.learned === "object") ? data.learned : {};
+      const incomingHistory = Array.isArray(data.history) ? data.history : [];
+      // merge learned marks (union)
+      Object.keys(incomingLearned).forEach(k=>{ if(incomingLearned[k]) store.learned[k] = true; });
+      // merge history, avoiding exact duplicates
+      const existingKeys = new Set(store.history.map(h => h.date+"|"+h.mode+"|"+h.correct+"|"+h.total));
+      let added = 0;
+      incomingHistory.forEach(h=>{
+        if(!h || typeof h.total !== "number" || typeof h.correct !== "number") return;
+        const key = h.date+"|"+h.mode+"|"+h.correct+"|"+h.total;
+        if(!existingKeys.has(key)){ store.history.push(h); existingKeys.add(key); added++; }
+      });
+      store.history.sort((a,b)=> new Date(a.date) - new Date(b.date));
+      saveStore();
+      renderHome();
+      toast("Merged " + added + " session(s) and " + Object.keys(incomingLearned).length + " learned mark(s) from file.");
+    }catch(err){
+      alert("Couldn't read that file. Make sure it's a results file downloaded from this app.");
+    }
+    $("file-upload").value = "";
+  };
+  reader.readAsText(file);
+});
+
+// ---------------- session ----------------
+let session = null;
+
+function startSession(ids, mode){
+  const order = shuffle(ids);
+  session = {
+    mode: mode,
+    ids: order,
+    idx: 0,
+    perms: {},    // qid -> shuffled choice index order (array of original indices)
+    picks: {},    // qid -> original index picked
+    answered: {}  // practice mode: qid -> true once revealed
+  };
+  order.forEach(qid=>{
+    const q = byId(qid);
+    session.perms[qid] = shuffle(q.c.map((_,i)=>i));
+  });
+  show("screen-quiz");
+  renderQuestion();
+}
+
+$("btn-start").addEventListener("click", ()=>{
+  const mode = $("opt-mode").value;
+  const inc = $("opt-include-learned").checked;
+  const chap = $("opt-chapter").value;
+  const pool = poolFor(inc, chap);
+  if(pool.length === 0){
+    alert("Every question is marked as learned! Check “Include questions I've marked as learned” or reset your learned marks.");
+    return;
+  }
+  const cv = $("opt-count").value;
+  const n = cv === "all" ? pool.length : Math.min(parseInt(cv,10), pool.length);
+  startSession(shuffle(pool.map(q=>q.id)).slice(0,n), mode);
+});
+
+function renderQuestion(){
+  const qid = session.ids[session.idx];
+  const q = byId(qid);
+  const perm = session.perms[qid];
+  $("q-ch").textContent = "Chapter " + q.ch;
+  $("q-topic").textContent = q.t;
+  $("q-learned-tag").classList.toggle("hidden", !store.learned[qid]);
+  $("q-counter").textContent = "Question " + (session.idx+1) + " of " + session.ids.length;
+  $("q-progress").style.width = (100*session.idx/session.ids.length) + "%";
+  $("q-text").innerHTML = q.q;
+  $("q-feedback").innerHTML = "";
+  $("learn-wrap").classList.add("hidden");
+  $("learn-check").checked = !!store.learned[qid];
+  $("btn-next").disabled = true;
+  $("btn-next").textContent = (session.idx === session.ids.length-1) ? "Finish ✔" : "Next ▶";
+  $("btn-idk").disabled = false;
+  $("btn-idk").classList.remove("selected");
+  $("btn-idk").innerHTML = session.mode === "exam"
+    ? "&#129335; I don't know &mdash; skip (counts as missed)"
+    : "&#129335; I don't know &mdash; show me the answer";
+
+  const box = $("q-choices");
+  box.innerHTML = "";
+  perm.forEach((origIdx, displayIdx)=>{
+    const b = document.createElement("button");
+    b.className = "choice";
+    b.innerHTML = "<span class='letter'>" + String.fromCharCode(65+displayIdx) + "</span><span>" + q.c[origIdx] + "</span>";
+    b.addEventListener("click", ()=>pick(qid, origIdx, b));
+    box.appendChild(b);
+  });
+}
+
+function pick(qid, origIdx, btn){
+  const q = byId(qid);
+  if(session.mode === "exam"){
+    session.picks[qid] = origIdx;
+    [...$("q-choices").children].forEach(c=>c.classList.remove("selected"));
+    $("btn-idk").classList.remove("selected");
+    btn.classList.add("selected");
+    $("btn-next").disabled = false;
+    return;
+  }
+  // practice mode: lock in, show feedback
+  if(session.answered[qid]) return;
+  session.answered[qid] = true;
+  session.picks[qid] = origIdx;
+  const perm = session.perms[qid];
+  [...$("q-choices").children].forEach((c,di)=>{
+    const oi = perm[di];
+    c.disabled = true;
+    if(oi === q.a) c.classList.add("correct");
+    else if(oi === origIdx) c.classList.add("wrong");
+  });
+  const good = origIdx === q.a;
+  const fb = document.createElement("div");
+  fb.className = "feedback " + (good ? "good" : "bad");
+  fb.innerHTML = "<div class='verdict'>" + (good ? "✅ Correct!" : "❌ Not quite — the answer is highlighted in green.") + "</div>" +
+    "<div>" + q.e + "</div><div class='src'>Source: " + q.s + "</div>";
+  $("q-feedback").innerHTML = "";
+  $("q-feedback").appendChild(fb);
+  $("learn-wrap").classList.remove("hidden");
+  $("btn-idk").disabled = true;
+  $("btn-next").disabled = false;
+}
+
+$("btn-idk").addEventListener("click", ()=>{
+  const qid = session.ids[session.idx];
+  const q = byId(qid);
+  if(session.mode === "exam"){
+    // record as missed without revealing the answer mid-exam
+    session.picks[qid] = -1;
+    [...$("q-choices").children].forEach(c=>c.classList.remove("selected"));
+    $("btn-idk").classList.add("selected");
+    $("btn-next").disabled = false;
+    return;
+  }
+  // practice mode: reveal the answer, recorded as missed
+  if(session.answered[qid]) return;
+  session.answered[qid] = true;
+  session.picks[qid] = -1;
+  const perm = session.perms[qid];
+  [...$("q-choices").children].forEach((c,di)=>{
+    c.disabled = true;
+    if(perm[di] === q.a) c.classList.add("correct");
+  });
+  const fb = document.createElement("div");
+  fb.className = "feedback idk";
+  fb.innerHTML = "<div class='verdict'>💡 No problem — here's the answer (recorded as missed so it comes back around):</div>" +
+    "<div><b>" + q.c[q.a] + "</b></div>" +
+    "<div style='margin-top:8px'>" + q.e + "</div><div class='src'>Source: " + q.s + "</div>";
+  $("q-feedback").innerHTML = "";
+  $("q-feedback").appendChild(fb);
+  $("learn-wrap").classList.remove("hidden");
+  $("btn-idk").disabled = true;
+  $("btn-next").disabled = false;
+});
+
+$("learn-check").addEventListener("change", e=>{
+  const qid = session.ids[session.idx];
+  if(e.target.checked) store.learned[qid] = true; else delete store.learned[qid];
+  saveStore();
+  $("q-learned-tag").classList.toggle("hidden", !store.learned[qid]);
+});
+
+$("btn-next").addEventListener("click", ()=>{
+  if(session.idx < session.ids.length - 1){ session.idx++; renderQuestion(); }
+  else finishSession();
+});
+$("btn-quit").addEventListener("click", ()=>{
+  if(confirm("Quit this session? Progress in it won't be saved.")){ session = null; renderHome(); show("screen-home"); }
+});
+
+// ---------------- results ----------------
+function finishSession(){
+  const total = session.ids.length;
+  let correct = 0;
+  const perTopic = {};
+  session.ids.forEach(qid=>{
+    const q = byId(qid);
+    if(!perTopic[q.t]) perTopic[q.t] = {right:0,total:0};
+    perTopic[q.t].total++;
+    if(session.picks[qid] === q.a){ correct++; perTopic[q.t].right++; }
+  });
+  const now = new Date();
+  store.history.push({
+    date: now.toLocaleDateString() + " " + now.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}),
+    mode: session.mode, total: total, correct: correct
+  });
+  saveStore();
+
+  const pct = Math.round(100*correct/total);
+  $("r-pct").textContent = pct + "%";
+  $("r-sub").textContent = correct + " of " + total + " correct · " + (session.mode==="exam"?"Exam":"Practice") + " mode" +
+    (pct===100 ? " · 🎉 perfect!" : "");
+
+  const rt = $("r-topics");
+  rt.innerHTML = "";
+  Object.keys(perTopic).forEach(t=>{
+    const d = perTopic[t];
+    const row = document.createElement("div");
+    row.className = "topic-row";
+    row.innerHTML = "<span>" + t + " <span class='muted'>(" + d.right + "/" + d.total + ")</span></span>" +
+      "<span class='topic-bar'><div style='width:" + (100*d.right/d.total) + "%'></div></span>";
+    rt.appendChild(row);
+  });
+
+  const missed = session.ids.filter(qid=>session.picks[qid] !== byId(qid).a);
+  $("r-review-head").textContent = missed.length ? "Review (" + missed.length + " missed)" : "Review — nothing missed!";
+  const rv = $("r-review");
+  rv.innerHTML = "";
+  session.ids.forEach(qid=>{
+    const q = byId(qid);
+    const right = session.picks[qid] === q.a;
+    if(right && missed.length > 0) return; // when there are misses, only show those
+    const div = document.createElement("div");
+    div.className = "review-item " + (right ? "right" : "missed");
+    const p = session.picks[qid];
+    const yourAns = p === -1 ? "<i>I didn't know</i>" : (p !== undefined ? q.c[p] : "<i>no answer</i>");
+    div.innerHTML = "<div class='q'>" + q.q + "</div>" +
+      (right ? "<div class='ans' style='color:var(--green)'>✓ " + q.c[q.a] + "</div>"
+             : "<div class='ans' style='color:var(--red)'>✗ Your answer: " + yourAns + "</div>" +
+               "<div class='ans' style='color:var(--green)'>✓ Correct: " + q.c[q.a] + "</div>") +
+      "<div class='muted' style='font-size:.9rem'>" + q.e + "</div>" +
+      "<div class='src'>Source: " + q.s + "</div>";
+    const learnBtn = document.createElement("button");
+    learnBtn.className = store.learned[qid] ? "btn-green mt" : "btn-secondary mt";
+    learnBtn.textContent = store.learned[qid] ? "✓ Learned" : "Mark as learned";
+    learnBtn.addEventListener("click", ()=>{
+      if(store.learned[qid]){ delete store.learned[qid]; learnBtn.className="btn-secondary mt"; learnBtn.textContent="Mark as learned"; }
+      else { store.learned[qid] = true; learnBtn.className="btn-green mt"; learnBtn.textContent="✓ Learned"; }
+      saveStore();
+    });
+    div.appendChild(learnBtn);
+    rv.appendChild(div);
+  });
+
+  $("btn-retry-missed").disabled = missed.length === 0;
+  $("btn-retry-missed").onclick = ()=>{ if(missed.length) startSession(missed.slice(), "practice"); };
+
+  show("screen-results");
+}
+
+$("btn-home").addEventListener("click", ()=>{ session = null; renderHome(); show("screen-home"); });
+
+// ---------------- init ----------------
+renderHome();
+</script>
+</body>
+</html>

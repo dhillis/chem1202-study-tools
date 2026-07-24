@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHEM 1202 — Module 2 Practice Problems (Solutions / How-to-Solve Guide)</title>
+<style>
+  :root{
+    --bg:#f4f6fa; --card:#ffffff; --ink:#1c2333; --muted:#6b7487;
+    --accent:#4553c2; --accent-soft:#eceefb; --green:#1e8e5a; --green-soft:#e3f5ec;
+    --red:#c0392b; --red-soft:#fdecea; --gold:#b7791f; --gold-soft:#fdf3e0;
+    --border:#dfe4ee; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 18px 80px}
+  header.app{text-align:center;margin-bottom:22px}
+  header.app h1{margin:0;font-size:1.55rem}
+  header.app p{margin:4px 0 0;color:var(--muted);font-size:.95rem}
+  .backlink{display:inline-block;margin-bottom:16px;color:var(--accent);text-decoration:none;font-weight:600;font-size:.92rem}
+  .backlink:hover{text-decoration:underline}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin-bottom:16px;box-shadow:0 1px 3px rgba(20,30,60,.06)}
+  h2{margin:0 0 6px;font-size:1.2rem;color:var(--accent)}
+  .sub{color:var(--muted);font-size:.85rem;margin:0 0 12px}
+  .problem{border-top:1px solid var(--border);padding-top:18px;margin-top:18px}
+  .problem:first-of-type{border-top:none;padding-top:0;margin-top:0}
+  .ptitle{font-weight:700;font-size:1.02rem;margin-bottom:4px}
+  .ptag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.03em;padding:2px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-right:6px;vertical-align:middle}
+  .statement{font-size:.94rem;margin:6px 0 10px}
+  .strategy{background:var(--gold-soft);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:.88rem}
+  .strategy b{color:var(--gold)}
+  .steps{background:#fafbfe;border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:10px 0;font-size:.92rem}
+  .steps ol{margin:4px 0;padding-left:20px}
+  .steps li{margin:6px 0}
+  .answer{background:var(--green-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-weight:700;color:var(--green);font-size:.95rem}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;margin:10px 0}
+  th,td{padding:6px 10px;text-align:left;border-bottom:1px solid var(--border)}
+  th{color:var(--muted);font-weight:700;font-size:.75rem;text-transform:uppercase;background:var(--accent-soft)}
+  .muted{color:var(--muted)}
+  .chnote{font-weight:700;color:var(--accent);margin:22px 0 4px;font-size:1.05rem}
+  .eq{font-family:"Cambria Math",Georgia,serif;background:#fff;border:1px solid var(--border);border-radius:6px;padding:2px 8px;display:inline-block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="index.html">&larr; Back to Exam 2 Practice App</a>
+  <header class="app">
+    <h1>&#9989; CHEM 1202 &mdash; Module 2 Practice Problems: Solutions</h1>
+    <p>Chapters 16 &amp; 17 &middot; A how-to-solve guide &mdash; try the <a href="practice-problems.html">problems on your own first</a></p>
+  </header>
+
+  <div class="card">
+    <p class="statement">Full worked solutions for all 16 problems in the <a href="practice-problems.html">companion practice set</a>. Each problem includes a <b>Strategy</b> box explaining the general method (so you can recognize and solve this <i>type</i> of problem on the exam, not just this specific one) before the step-by-step solution. See the <a href="study-guide.html">study guide</a> for the underlying concepts and equation sheet.</p>
+  </div>
+
+  <div class="card">
+    <div class="chnote">Chapter 16 — Kinetics</div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P1</span>Reaction Rate from Stoichiometry</div>
+      <p class="statement">2N<sub>2</sub>O<sub>5</sub>(g) &rarr; 4NO<sub>2</sub>(g) + O<sub>2</sub>(g). [N<sub>2</sub>O<sub>5</sub>] drops from 0.500 M to 0.480 M over 20.0 s. Find: (a) rate of N<sub>2</sub>O<sub>5</sub> disappearance, (b) rate of reaction, (c) rate of O<sub>2</sub> formation, (d) rate of NO<sub>2</sub> formation.</p>
+      <div class="strategy"><b>Strategy:</b> First find the raw rate of change for the species you're given. Then divide by that species' coefficient (with a minus sign for a reactant) to get the single overall "rate of reaction." Finally, multiply that rate of reaction by each other species' own coefficient (plus sign for products, minus for reactants) to get its individual rate.</div>
+      <div class="steps"><ol>
+        <li>Rate of N<sub>2</sub>O<sub>5</sub> disappearance = &minus;&Delta;[N<sub>2</sub>O<sub>5</sub>]/&Delta;t = &minus;(0.480&minus;0.500)/20.0 = &minus;(&minus;0.020)/20.0 = <b>1.0&times;10<sup>&minus;3</sup> M/s</b>.</li>
+        <li>Rate of reaction = (1/2) &times; rate of N<sub>2</sub>O<sub>5</sub> disappearance (dividing by its coefficient, 2) = (1/2)(1.0&times;10<sup>&minus;3</sup>) = <b>5.0&times;10<sup>&minus;4</sup> M/s</b>.</li>
+        <li>Rate of O<sub>2</sub> formation = (1) &times; rate of reaction (O<sub>2</sub>'s coefficient is 1) = <b>5.0&times;10<sup>&minus;4</sup> M/s</b>.</li>
+        <li>Rate of NO<sub>2</sub> formation = (4) &times; rate of reaction (NO<sub>2</sub>'s coefficient is 4) = 4 &times; 5.0&times;10<sup>&minus;4</sup> = <b>2.0&times;10<sup>&minus;3</sup> M/s</b>.</li>
+      </ol></div>
+      <div class="answer">(a) 1.0&times;10<sup>&minus;3</sup> M/s &nbsp; (b) 5.0&times;10<sup>&minus;4</sup> M/s &nbsp; (c) 5.0&times;10<sup>&minus;4</sup> M/s &nbsp; (d) 2.0&times;10<sup>&minus;3</sup> M/s</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P2</span>Method of Initial Rates</div>
+      <p class="statement">2A + B &rarr; products. Trial 1: [A]=0.20, [B]=0.10, rate=4.0&times;10<sup>&minus;3</sup>. Trial 2: [A]=0.40, [B]=0.10, rate=1.6&times;10<sup>&minus;2</sup>. Trial 3: [A]=0.20, [B]=0.20, rate=8.0&times;10<sup>&minus;3</sup>.</p>
+      <div class="strategy"><b>Strategy:</b> Find a pair of trials where only ONE concentration changes. Compute the ratio of rates and the ratio of that concentration; solve (conc. ratio)<sup>order</sup> = (rate ratio) for the order &mdash; this is an exponent equation, so don't just divide the ratios. Repeat for the other reactant. Then plug any one trial into the completed rate law to solve for k.</div>
+      <div class="steps"><ol>
+        <li><b>Order in A</b> (compare trials 1&rarr;2: [A] doubles, [B] constant): rate ratio = (1.6&times;10<sup>&minus;2</sup>)/(4.0&times;10<sup>&minus;3</sup>) = 4.0. Solve 2<sup>n</sup> = 4.0 &rarr; <b>n = 2</b> (second order in A).</li>
+        <li><b>Order in B</b> (compare trials 1&rarr;3: [B] doubles, [A] constant): rate ratio = (8.0&times;10<sup>&minus;3</sup>)/(4.0&times;10<sup>&minus;3</sup>) = 2.0. Solve 2<sup>m</sup> = 2.0 &rarr; <b>m = 1</b> (first order in B).</li>
+        <li><b>Overall order</b> = n + m = 2 + 1 = <b>3rd order</b>.</li>
+        <li><b>Rate law:</b> Rate = k[A]<sup>2</sup>[B].</li>
+        <li><b>Solve for k</b> using Trial 1: 4.0&times;10<sup>&minus;3</sup> = k(0.20)<sup>2</sup>(0.10) = k(0.0040) &rarr; k = (4.0&times;10<sup>&minus;3</sup>)/(0.0040) = 1.0. Units: since overall order is 3, k has units of M<sup>&minus;2</sup>&middot;s<sup>&minus;1</sup> (so that k[A]<sup>2</sup>[B] comes out in M/s).</li>
+      </ol></div>
+      <div class="answer">n=2, m=1, overall order=3; Rate = k[A]&sup2;[B]; k = 1.0 M<sup>&minus;2</sup>&middot;s<sup>&minus;1</sup></div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P3</span>First-Order Integrated Rate Law &amp; Half-Life</div>
+      <p class="statement">First order in A, k = 0.0410 min<sup>&minus;1</sup>, [A]<sub>0</sub> = 0.640 M. Find [A] after 15.0 min, and the half-life.</p>
+      <div class="strategy"><b>Strategy:</b> "First order" + "concentration at a later time" signals the first-order integrated rate law, [A]<sub>t</sub> = [A]<sub>0</sub>e<sup>&minus;kt</sup>. For half-life, use t&#189; = ln2/k directly &mdash; it does NOT depend on [A]<sub>0</sub> for first order, so you don't need the answer from part (a) to do part (b).</div>
+      <div class="steps"><ol>
+        <li>[A]<sub>t</sub> = [A]<sub>0</sub>e<sup>&minus;kt</sup> = 0.640 &times; e<sup>&minus;(0.0410)(15.0)</sup> = 0.640 &times; e<sup>&minus;0.615</sup> = 0.640 &times; 0.5406.</li>
+        <li>[A]<sub>t</sub> = <b>0.346 M</b>.</li>
+        <li>t&#189; = ln(2)/k = 0.6931/0.0410.</li>
+        <li>t&#189; = <b>16.9 min</b>.</li>
+      </ol></div>
+      <div class="answer">[A] after 15.0 min = 0.346 M; t&#189; = 16.9 min</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P4</span>Second-Order Integrated Rate Law &amp; Half-Life</div>
+      <p class="statement">Second order in A, k = 0.0360 L/mol&middot;min, [A]<sub>0</sub> = 0.250 M. Find [A] after 40.0 min, and the half-life.</p>
+      <div class="strategy"><b>Strategy:</b> "Second order" signals 1/[A]<sub>t</sub> = kt + 1/[A]<sub>0</sub>. Solve for 1/[A]<sub>t</sub> first, then invert. For half-life, use t&#189; = 1/(k[A]<sub>0</sub>) &mdash; this one DOES depend on [A]<sub>0</sub>, unlike first order.</div>
+      <div class="steps"><ol>
+        <li>1/[A]<sub>t</sub> = kt + 1/[A]<sub>0</sub> = (0.0360)(40.0) + 1/0.250 = 1.44 + 4.00 = 5.44.</li>
+        <li>[A]<sub>t</sub> = 1/5.44 = <b>0.184 M</b>.</li>
+        <li>t&#189; = 1/(k[A]<sub>0</sub>) = 1/[(0.0360)(0.250)] = 1/0.00900.</li>
+        <li>t&#189; = <b>111 min</b>.</li>
+      </ol></div>
+      <div class="answer">[A] after 40.0 min = 0.184 M; t&#189; = 111 min</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P5</span>Zero-Order Half-Life Pattern</div>
+      <p class="statement">Zero order in A, k = 0.0220 M/s, [A]<sub>0</sub> = 0.880 M. Find the first and second half-lives, and compare them.</p>
+      <div class="strategy"><b>Strategy:</b> For zero order, t&#189; = [A]<sub>0</sub>/(2k) &mdash; but this formula only gives the FIRST half-life directly. For the second half-life, treat the concentration at the end of the first half-life (0.440 M) as a NEW starting concentration and reapply the same formula.</div>
+      <div class="steps"><ol>
+        <li>First half-life: t&#189; = [A]<sub>0</sub>/(2k) = 0.880/(2 &times; 0.0220) = 0.880/0.0440 = <b>20.0 s</b> (takes [A] from 0.880 to 0.440 M).</li>
+        <li>Second half-life: reapply the formula with the new starting concentration, 0.440 M: t&#189; = 0.440/0.0440 = <b>10.0 s</b> (takes [A] from 0.440 to 0.220 M).</li>
+        <li>The second half-life (10.0 s) is exactly HALF the first (20.0 s) &mdash; this is the general zero-order pattern: each successive half-life is half as long as the one before, because t&#189; is directly proportional to the (shrinking) starting concentration.</li>
+      </ol></div>
+      <div class="answer">First half-life = 20.0 s; second half-life = 10.0 s (half as long, as expected for zero order)</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P6</span>Arrhenius Equation — Solving for E<sub>a</sub></div>
+      <p class="statement">k<sub>1</sub> = 2.0&times;10<sup>&minus;3</sup> at T<sub>1</sub> = 295 K; k<sub>2</sub> = 8.9&times;10<sup>&minus;2</sup> at T<sub>2</sub> = 350 K. Find E<sub>a</sub>.</p>
+      <div class="strategy"><b>Strategy:</b> Two (k, T) pairs signal the two-point Arrhenius equation. Rearrange to solve for E<sub>a</sub> directly &mdash; no need to convert temperature units here since both are already in Kelvin. Watch your sign: the equation has a minus sign built in.</div>
+      <div class="steps"><ol>
+        <li>Start from ln(k<sub>2</sub>/k<sub>1</sub>) = &minus;(E<sub>a</sub>/R)(1/T<sub>2</sub> &minus; 1/T<sub>1</sub>). Rearranged for E<sub>a</sub>: E<sub>a</sub> = R&middot;ln(k<sub>2</sub>/k<sub>1</sub>) &divide; (1/T<sub>1</sub> &minus; 1/T<sub>2</sub>).</li>
+        <li>ln(k<sub>2</sub>/k<sub>1</sub>) = ln(8.9&times;10<sup>&minus;2</sup>/2.0&times;10<sup>&minus;3</sup>) = ln(44.5) = 3.795.</li>
+        <li>1/T<sub>1</sub> &minus; 1/T<sub>2</sub> = 1/295 &minus; 1/350 = 0.003390 &minus; 0.002857 = 5.32&times;10<sup>&minus;4</sup> K<sup>&minus;1</sup>.</li>
+        <li>E<sub>a</sub> = (8.314)(3.795) &divide; (5.32&times;10<sup>&minus;4</sup>) = 31.55 &divide; 5.32&times;10<sup>&minus;4</sup> = 59,300 J/mol.</li>
+      </ol></div>
+      <div class="answer">E<sub>a</sub> &asymp; 59.2 kJ/mol</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P7</span>Arrhenius Equation — Solving for k at a New Temperature</div>
+      <p class="statement">E<sub>a</sub> = 88.0 kJ/mol; k<sub>1</sub> = 5.0&times;10<sup>&minus;4</sup> at T<sub>1</sub> = 310 K. Find k<sub>2</sub> at T<sub>2</sub> = 340 K.</p>
+      <div class="strategy"><b>Strategy:</b> Given E<sub>a</sub> and one (k, T) point, solve the two-point equation for ln(k<sub>2</sub>/k<sub>1</sub>) first, then exponentiate to isolate k<sub>2</sub>. Convert E<sub>a</sub> to Joules to match R = 8.314 J/mol&middot;K.</div>
+      <div class="steps"><ol>
+        <li>E<sub>a</sub> = 88.0 kJ/mol = 88,000 J/mol.</li>
+        <li>ln(k<sub>2</sub>/k<sub>1</sub>) = &minus;(E<sub>a</sub>/R)(1/T<sub>2</sub> &minus; 1/T<sub>1</sub>) = &minus;(88000/8.314)(1/340 &minus; 1/310) = &minus;(10,585)(&minus;2.849&times;10<sup>&minus;4</sup>) = 3.016.</li>
+        <li>k<sub>2</sub>/k<sub>1</sub> = e<sup>3.016</sup> = 20.4.</li>
+        <li>k<sub>2</sub> = k<sub>1</sub> &times; 20.4 = (5.0&times;10<sup>&minus;4</sup>)(20.4).</li>
+      </ol></div>
+      <div class="answer">k<sub>2</sub> &asymp; 1.0&times;10<sup>&minus;2</sup> (same units as k<sub>1</sub>)</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P8</span>Reaction Mechanism Analysis</div>
+      <p class="statement">Step 1 (slow): NO<sub>2</sub>Cl(g) &rarr; NO<sub>2</sub>(g) + Cl(g). Step 2 (fast): NO<sub>2</sub>Cl(g) + Cl(g) &rarr; NO<sub>2</sub>(g) + Cl<sub>2</sub>(g).</p>
+      <div class="strategy"><b>Strategy:</b> Add the steps and cancel anything that appears as both a product and a reactant (that's your intermediate) to get the overall equation. Molecularity = count of reactant particles in EACH individual step. The rate law comes only from the slow (rate-determining) step, using its own coefficients as orders (valid since it's elementary).</div>
+      <div class="steps"><ol>
+        <li><b>Overall equation:</b> add the two steps: NO<sub>2</sub>Cl + NO<sub>2</sub>Cl + Cl &rarr; NO<sub>2</sub> + Cl + NO<sub>2</sub> + Cl<sub>2</sub>. Cl cancels (appears on both sides): <b>2NO<sub>2</sub>Cl(g) &rarr; 2NO<sub>2</sub>(g) + Cl<sub>2</sub>(g)</b>.</li>
+        <li><b>Molecularity:</b> Step 1 has 1 reactant particle (NO<sub>2</sub>Cl) &rarr; <b>unimolecular</b>. Step 2 has 2 reactant particles (NO<sub>2</sub>Cl and Cl) &rarr; <b>bimolecular</b>.</li>
+        <li><b>Intermediate:</b> Cl is produced in step 1 and consumed in step 2 (and doesn't appear in the overall equation) &rarr; <b>Cl is the intermediate</b>.</li>
+        <li><b>Rate law:</b> the rate-determining step is step 1 (slow), which is elementary and unimolecular, so its rate law uses its own coefficient: Rate = k<sub>1</sub>[NO<sub>2</sub>Cl].</li>
+      </ol></div>
+      <div class="answer">Overall: 2NO<sub>2</sub>Cl(g) &rarr; 2NO<sub>2</sub>(g) + Cl<sub>2</sub>(g); Step 1 unimolecular, Step 2 bimolecular; intermediate = Cl; Rate = k[NO<sub>2</sub>Cl]</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P9</span>Reaction Energy Diagram</div>
+      <p class="statement">E<sub>a</sub>(forward) = 62 kJ/mol; &Delta;H<sub>rxn</sub> = &minus;35 kJ/mol.</p>
+      <div class="strategy"><b>Strategy:</b> The sign of &Delta;H tells you exo/endothermic directly. Use &Delta;H<sub>rxn</sub> = E<sub>a</sub>(fwd) &minus; E<sub>a</sub>(rev), rearranged to solve for E<sub>a</sub>(rev).</div>
+      <div class="steps"><ol>
+        <li>&Delta;H<sub>rxn</sub> = &minus;35 kJ/mol is negative &rarr; <b>exothermic</b> (products lower in energy than reactants).</li>
+        <li>Rearrange: E<sub>a</sub>(rev) = E<sub>a</sub>(fwd) &minus; &Delta;H<sub>rxn</sub> = 62 &minus; (&minus;35) = 62 + 35.</li>
+        <li>E<sub>a</sub>(rev) = <b>97 kJ/mol</b>.</li>
+        <li>E<sub>a</sub>(rev) (97) &gt; E<sub>a</sub>(fwd) (62) &mdash; this makes sense: since the reaction is exothermic, the products sit in a lower energy well than the reactants, so climbing back UP from products to the transition state (the reverse reaction) requires crossing a bigger energy gap than going forward.</li>
+      </ol></div>
+      <div class="answer">Exothermic; E<sub>a</sub>(reverse) = 97 kJ/mol (larger than E<sub>a</sub>(forward), as expected for an exothermic reaction)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="chnote">Chapter 17 — Equilibrium</div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P10</span>Writing K Expressions &amp; Interpreting Magnitude</div>
+      <p class="statement">(a) 2NO(g) + O<sub>2</sub>(g) &#8646; 2NO<sub>2</sub>(g), K<sub>c</sub> = 6.0&times;10<sup>5</sup>. (b) Ag<sub>2</sub>CO<sub>3</sub>(s) &#8646; 2Ag<sup>+</sup>(aq) + CO<sub>3</sub><sup>2&minus;</sup>(aq).</p>
+      <div class="strategy"><b>Strategy:</b> Products over reactants, each raised to its coefficient. Omit any pure solid or pure liquid. Compare K to 1: K &raquo; 1 favors products, K &laquo; 1 favors reactants.</div>
+      <div class="steps"><ol>
+        <li>(a) K<sub>c</sub> = [NO<sub>2</sub>]<sup>2</sup> / ([NO]<sup>2</sup>[O<sub>2</sub>]). Since 6.0&times;10<sup>5</sup> is much greater than 1, the equilibrium strongly <b>favors products</b>.</li>
+        <li>(b) Ag<sub>2</sub>CO<sub>3</sub>(s) is a pure solid and is omitted. K<sub>c</sub> = [Ag<sup>+</sup>]<sup>2</sup>[CO<sub>3</sub><sup>2&minus;</sup>] (note: this is why a "solubility product" expression has no denominator &mdash; the only solid drops out entirely).</li>
+      </ol></div>
+      <div class="answer">(a) K<sub>c</sub> = [NO<sub>2</sub>]&sup2;/([NO]&sup2;[O<sub>2</sub>]); favors products. (b) K<sub>c</sub> = [Ag<sup>+</sup>]&sup2;[CO<sub>3</sub><sup>2&minus;</sup>]</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P11</span>Reaction Quotient (Q vs. K)</div>
+      <p class="statement">K = 170 for 2NO<sub>2</sub>(g) &#8646; N<sub>2</sub>O<sub>4</sub>(g). At some point, [NO<sub>2</sub>] = 0.025 M, [N<sub>2</sub>O<sub>4</sub>] = 0.040 M.</p>
+      <div class="strategy"><b>Strategy:</b> Write Q using the exact same form as K, plug in the given (non-equilibrium) concentrations, then compare Q to K to determine direction.</div>
+      <div class="steps"><ol>
+        <li>Q = [N<sub>2</sub>O<sub>4</sub>]/[NO<sub>2</sub>]<sup>2</sup> = 0.040/(0.025)<sup>2</sup> = 0.040/0.000625.</li>
+        <li>Q = 64.</li>
+        <li>Compare: Q (64) &lt; K (170), so the reaction is NOT at equilibrium and must proceed toward products (right) to raise Q up to 170.</li>
+      </ol></div>
+      <div class="answer">Q = 64; not at equilibrium; shifts right (toward N<sub>2</sub>O<sub>4</sub>)</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P12</span>Converting K<sub>c</sub> to K<sub>p</sub></div>
+      <p class="statement">2SO<sub>3</sub>(g) &#8646; 2SO<sub>2</sub>(g) + O<sub>2</sub>(g), K<sub>c</sub> = 4.08&times;10<sup>&minus;3</sup> at T = 1000 K.</p>
+      <div class="strategy"><b>Strategy:</b> Find &Delta;n<sub>gas</sub> (product gas moles minus reactant gas moles) from the balanced equation, then plug into K<sub>p</sub> = K<sub>c</sub>(RT)<sup>&Delta;n</sup> using R = 0.0821 L&middot;atm/mol&middot;K.</li></div>
+      <div class="steps"><ol>
+        <li>&Delta;n<sub>gas</sub> = (2 + 1) &minus; 2 = <b>+1</b>.</li>
+        <li>RT = (0.0821)(1000) = 82.1.</li>
+        <li>K<sub>p</sub> = K<sub>c</sub>(RT)<sup>&Delta;n</sup> = (4.08&times;10<sup>&minus;3</sup>)(82.1)<sup>1</sup> = (4.08&times;10<sup>&minus;3</sup>)(82.1).</li>
+      </ol></div>
+      <div class="answer">K<sub>p</sub> &asymp; 0.335</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P13</span>ICE Table — Perfect-Square Shortcut</div>
+      <p class="statement">H<sub>2</sub>(g) + Br<sub>2</sub>(g) &#8646; 2HBr(g), K = 81.0. 3.00 L flask: 1.20 mol H<sub>2</sub>, 1.20 mol Br<sub>2</sub>, 0 mol HBr.</p>
+      <div class="strategy"><b>Strategy:</b> Convert moles to molarity first. Since [H<sub>2</sub>]<sub>0</sub> = [Br<sub>2</sub>]<sub>0</sub>, the K expression becomes a perfect square &mdash; take a square root instead of using the full quadratic formula.</div>
+      <div class="steps"><ol>
+        <li>Initial concentrations: [H<sub>2</sub>]<sub>0</sub> = [Br<sub>2</sub>]<sub>0</sub> = 1.20 mol &divide; 3.00 L = 0.400 M.</li>
+        <li>ICE table: H<sub>2</sub>: 0.400&minus;x; Br<sub>2</sub>: 0.400&minus;x; HBr: 0 + 2x.</li>
+        <li>K = (2x)<sup>2</sup> / [(0.400&minus;x)(0.400&minus;x)] = [2x/(0.400&minus;x)]<sup>2</sup> = 81.0.</li>
+        <li>Take the square root of both sides: 2x/(0.400&minus;x) = &radic;81.0 = 9.00.</li>
+        <li>Solve: 2x = 9.00(0.400&minus;x) = 3.60 &minus; 9.00x &rarr; 11.00x = 3.60 &rarr; x = 0.327 M.</li>
+        <li>[H<sub>2</sub>]<sub>eq</sub> = [Br<sub>2</sub>]<sub>eq</sub> = 0.400 &minus; 0.327 = 0.0727 M. [HBr]<sub>eq</sub> = 2(0.327) = 0.655 M.</li>
+        <li><b>Check:</b> K = (0.655)<sup>2</sup>/[(0.0727)(0.0727)] = 0.429/0.00529 &asymp; 81.1 &check; (matches, within rounding).</li>
+      </ol></div>
+      <div class="answer">[H<sub>2</sub>]<sub>eq</sub> = [Br<sub>2</sub>]<sub>eq</sub> = 0.0727 M; [HBr]<sub>eq</sub> = 0.655 M</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P14</span>ICE Table — Small-x Approximation</div>
+      <p class="statement">2SO<sub>2</sub>(g) + O<sub>2</sub>(g) &#8646; 2SO<sub>3</sub>(g), K<sub>p</sub> = 1.0&times;10<sup>&minus;3</sup>. P<sub>SO2</sub> = 4.0 atm, P<sub>O2</sub> = 2.5 atm, P<sub>SO3</sub> = 0 initially.</p>
+      <div class="strategy"><b>Strategy:</b> Since K<sub>p</sub> is small, assume x is small enough that (initial &minus; x) &asymp; initial for the reactants — this avoids a cubic/quadratic. ALWAYS check afterward that x is less than about 5% of the smallest initial value.</div>
+      <div class="steps"><ol>
+        <li>ICE (pressures): SO<sub>2</sub>: 4.0&minus;2x &asymp; 4.0; O<sub>2</sub>: 2.5&minus;x &asymp; 2.5; SO<sub>3</sub>: 0+2x.</li>
+        <li>K<sub>p</sub> = (2x)<sup>2</sup> / [(4.0)<sup>2</sup>(2.5)] = 1.0&times;10<sup>&minus;3</sup>.</li>
+        <li>(2x)<sup>2</sup> = (1.0&times;10<sup>&minus;3</sup>)(16)(2.5) = 0.040.</li>
+        <li>2x = &radic;0.040 = 0.200 &rarr; x = 0.100 atm.</li>
+        <li>P<sub>SO3</sub> = 2x = <b>0.20 atm</b>.</li>
+        <li><b>Check the approximation:</b> x (0.100) compared to the SMALLER initial pressure (O<sub>2</sub> = 2.5 atm): 0.100/2.5 = 4.0%. Since this is under the usual 5% cutoff, the approximation is <b>valid</b>.</li>
+      </ol></div>
+      <div class="answer">P<sub>SO3</sub> &asymp; 0.20 atm; approximation valid (x is 4.0% of the limiting initial pressure)</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P15</span>Calculating K<sub>p</sub> from Equilibrium Pressures</div>
+      <p class="statement">N<sub>2</sub>(g) + 3H<sub>2</sub>(g) &#8646; 2NH<sub>3</sub>(g). At equilibrium: P<sub>N2</sub>=0.50 atm, P<sub>H2</sub>=0.75 atm, P<sub>NH3</sub>=0.20 atm.</p>
+      <div class="strategy"><b>Strategy:</b> When you're already given equilibrium pressures directly, just plug straight into the K<sub>p</sub> expression &mdash; no ICE table needed.</div>
+      <div class="steps"><ol>
+        <li>K<sub>p</sub> = P<sub>NH3</sub><sup>2</sup> / (P<sub>N2</sub>&middot;P<sub>H2</sub><sup>3</sup>) = (0.20)<sup>2</sup> / [(0.50)(0.75)<sup>3</sup>].</li>
+        <li>Numerator: 0.0400. Denominator: 0.50 &times; 0.4219 = 0.2109.</li>
+        <li>K<sub>p</sub> = 0.0400/0.2109.</li>
+      </ol></div>
+      <div class="answer">K<sub>p</sub> &asymp; 0.190</div>
+    </div>
+
+    <div class="problem">
+      <div class="ptitle"><span class="ptag">P16</span>Le Ch&acirc;telier's Principle — Multiple Reactions</div>
+      <p class="statement">Predict the shift when volume is decreased (pressure increased) for four reactions, plus a temperature question for a fifth.</p>
+      <div class="strategy"><b>Strategy:</b> Count total moles of GAS ONLY on each side. Compressing (raising pressure) always shifts toward the side with FEWER gas moles; if both sides have equal gas moles, there's no shift. For temperature, treat heat as a reactant (endothermic) or product (exothermic).</div>
+      <div class="steps"><ol>
+        <li>(a) 2NO(g) + O<sub>2</sub>(g) &#8646; 2NO<sub>2</sub>(g): reactant side = 2+1 = 3 mol gas; product side = 2 mol gas. Fewer moles on product side &rarr; <b>shifts right</b>.</li>
+        <li>(b) H<sub>2</sub>(g) + CO<sub>2</sub>(g) &#8646; H<sub>2</sub>O(g) + CO(g): 1+1=2 mol gas on both sides &rarr; <b>no shift</b>.</li>
+        <li>(c) N<sub>2</sub>O<sub>4</sub>(g) &#8646; 2NO<sub>2</sub>(g): reactant side = 1 mol gas; product side = 2 mol gas. Fewer moles on reactant side &rarr; <b>shifts left</b>.</li>
+        <li>(d) CaCO<sub>3</sub>(s) &#8646; CaO(s) + CO<sub>2</sub>(g): only count gas &mdash; reactant side = 0 mol gas (CaCO<sub>3</sub> is solid); product side = 1 mol gas (CO<sub>2</sub>). Fewer moles on reactant side &rarr; <b>shifts left</b> (favors more solid CaCO<sub>3</sub>).</li>
+        <li>(e) 2SO<sub>2</sub>(g) + O<sub>2</sub>(g) &#8646; 2SO<sub>3</sub>(g) is exothermic &mdash; treat heat as a product (reactants &#8646; products + energy). Raising temperature is like adding more "product" (energy), so the equilibrium <b>shifts left</b> (toward reactants), and <b>K decreases</b>.</li>
+      </ol></div>
+      <div class="answer">(a) right &nbsp; (b) no shift &nbsp; (c) left &nbsp; (d) left &nbsp; (e) shifts left; K decreases</div>
+    </div>
+  </div>
+
+  <p class="muted" style="text-align:center">Try the problems yourself first: <a href="practice-problems.html">Module 2 Practice Problems (no solutions)</a> &middot; Review concepts: <a href="study-guide.html">Module 2 Study Guide</a></p>
+</div>
+</body>
+</html>

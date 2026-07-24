@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHEM 1202 — Module 2 Study Guide (Ch 16–17)</title>
+<style>
+  :root{
+    --bg:#f4f6fa; --card:#ffffff; --ink:#1c2333; --muted:#6b7487;
+    --accent:#4553c2; --accent-soft:#eceefb; --green:#1e8e5a; --green-soft:#e3f5ec;
+    --red:#c0392b; --red-soft:#fdecea; --gold:#b7791f; --gold-soft:#fdf3e0;
+    --border:#dfe4ee; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 18px 80px}
+  header.app{text-align:center;margin-bottom:22px}
+  header.app h1{margin:0;font-size:1.55rem}
+  header.app p{margin:4px 0 0;color:var(--muted);font-size:.95rem}
+  .backlink{display:inline-block;margin-bottom:16px;color:var(--accent);text-decoration:none;font-weight:600;font-size:.92rem}
+  .backlink:hover{text-decoration:underline}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 26px;margin-bottom:16px;box-shadow:0 1px 3px rgba(20,30,60,.06)}
+  h2{margin:0 0 12px;font-size:1.25rem;color:var(--accent);border-bottom:2px solid var(--accent-soft);padding-bottom:8px}
+  h3{margin:20px 0 8px;font-size:1.05rem}
+  h4{margin:14px 0 6px;font-size:.98rem;color:var(--ink)}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:22px}
+  li{margin:4px 0}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;margin:12px 0}
+  th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{color:var(--muted);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;background:var(--accent-soft)}
+  tr:hover td{background:#fafbfe}
+  .tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.03em;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+  .tag.gold{background:var(--gold-soft);color:var(--gold)}
+  .box{background:var(--accent-soft);border-radius:10px;padding:14px 16px;margin:12px 0;font-size:.92rem}
+  .box.warn{background:var(--gold-soft)}
+  .box.trap{background:var(--red-soft)}
+  .eq{font-family:"Cambria Math",Georgia,serif;font-size:1.05rem;background:#fafbfe;border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin:8px 0;display:inline-block}
+  .muted{color:var(--muted)}
+  .toc{columns:2;column-gap:24px}
+  @media (max-width:640px){ .toc{columns:1} }
+  .toc a{color:var(--ink);text-decoration:none;font-size:.92rem}
+  .toc a:hover{color:var(--accent)}
+  .toc li{margin:3px 0}
+  .divider{height:1px;background:var(--border);margin:20px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="index.html">&larr; Back to Exam 2 Practice App</a>
+  <header class="app">
+    <h1>&#128218; CHEM 1202 &mdash; Module 2 Study Guide</h1>
+    <p>Chapters 16 &amp; 17 &middot; Kinetics and Equilibrium &middot; the "Claude Study Guide" built from all Module 2 materials</p>
+  </header>
+
+  <div class="card">
+    <h2>Exam Logistics (from syllabus)</h2>
+    <ul>
+      <li>Exam 2 covers Chapters 16 and 17. Testing window: <b>July 24&ndash;July 26, 11:59 pm</b>.</li>
+      <li>Format: one-hour, proctored online exam worth 100 points.</li>
+      <li>Per the syllabus: &ldquo;Exams will cover assigned homework problems, chapters from the book, outside reading material, content from Moodle, assigned problems, and material from the lecture. Specific homework problems appearing on the exams will not be given.&rdquo;</li>
+      <li>The comprehensive final (Aug 14&ndash;16) also covers Chapters 16&ndash;21, so this material is worth over-learning now.</li>
+      <li>Calculator required: TI-83+/TI-84 or equivalent. No electronic messaging devices during the exam.</li>
+      <li>Per the Chapter 17 study guide: the quadratic equation will be given to you if needed for an ICE table problem &mdash; but you should still know how to set one up and pick the physically valid root.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Contents</h2>
+    <ul class="toc">
+      <li><a href="#c16-1">16.1 &mdash; Reaction Rates</a></li>
+      <li><a href="#c16-2">16.2 &mdash; Rate Laws &amp; Method of Initial Rates</a></li>
+      <li><a href="#c16-3">16.3 &mdash; Integrated Rate Laws &amp; Half-Life</a></li>
+      <li><a href="#c16-4">16.4 &mdash; Collision Theory &amp; the Arrhenius Equation</a></li>
+      <li><a href="#c16-5">16.5 &mdash; Reaction Mechanisms</a></li>
+      <li><a href="#c16-6">16.6 &mdash; Catalysts</a></li>
+      <li><a href="#c17-1">17.1 &mdash; The Equilibrium Constant, K</a></li>
+      <li><a href="#c17-2">17.2 &mdash; Reaction Quotient (Q vs. K)</a></li>
+      <li><a href="#c17-3">17.3 &mdash; K<sub>c</sub> and K<sub>p</sub></a></li>
+      <li><a href="#c17-4">17.4 &mdash; ICE Tables &amp; Solving Equilibrium Problems</a></li>
+      <li><a href="#c17-5">17.5 &mdash; Le Ch&acirc;telier's Principle</a></li>
+      <li><a href="#quickref">Quick-Reference Equation Sheet</a></li>
+      <li><a href="#checklist">Professor's Study Guide &mdash; High-Yield Checklist</a></li>
+      <li><a href="#traps">Common Traps</a></li>
+    </ul>
+  </div>
+
+  <div class="card" id="c16-1">
+    <h2>Chapter 16, Part 1 &mdash; Reaction Rates</h2>
+    <p>Chemical kinetics is the study of reaction rates and the factors that affect them. <b>Reaction rate</b> is the change in the concentration of a reactant or product per unit time.</p>
+    <h4>Factors that increase reaction rate</h4>
+    <ul>
+      <li><b>Higher concentration</b> &mdash; more reactant particles means more collisions per second.</li>
+      <li><b>Higher temperature</b> &mdash; particles move faster, so they collide more often and with more energy.</li>
+      <li><b>Greater surface area</b> (for solids) &mdash; more particles exposed for collision (classic example: a steel nail glows feebly in O<sub>2</sub>, but the same mass of steel wool bursts into flame).</li>
+      <li><b>A catalyst</b> &mdash; provides a lower-energy pathway (see 16.6).</li>
+    </ul>
+    <h4>Relating the rates of different species</h4>
+    <p>For a A + b B &rarr; c C + d D, every species' rate of change must be divided by its own coefficient (reactants get a minus sign, since they're disappearing) so all four expressions equal the same single "rate of reaction":</p>
+    <div class="eq">rate = &minus;(1/a)&Delta;[A]/&Delta;t = &minus;(1/b)&Delta;[B]/&Delta;t = (1/c)&Delta;[C]/&Delta;t = (1/d)&Delta;[D]/&Delta;t</div>
+    <p class="muted">Example: for H<sub>2</sub>(g) + I<sub>2</sub>(g) &rarr; 2HI(g), [HI] forms twice as fast as [H<sub>2</sub>] disappears, purely because of the 2:1 mole ratio &mdash; not because of any difference in "speed."</p>
+  </div>
+
+  <div class="card" id="c16-2">
+    <h2>Chapter 16, Part 2/3 &mdash; Rate Laws &amp; the Method of Initial Rates</h2>
+    <p>The rate law for a A + b B &rarr; products is Rate = k[A]<sup>n</sup>[B]<sup>m</sup>, where:</p>
+    <ul>
+      <li><b>k</b> = the rate constant (specific to a reaction at a given temperature)</li>
+      <li><b>n, m</b> = reaction orders, determined <i>only</i> by experiment &mdash; <b>never</b> assume they equal the balanced-equation coefficients a and b (they sometimes coincide, but there's no rule that they must).</li>
+      <li>Overall reaction order = n + m.</li>
+    </ul>
+    <h4>The "doubling trick" for finding an order</h4>
+    <p>Run two trials where only ONE reactant's concentration changes. If that concentration is doubled and the rate changes by some factor, solve <b>2<sup>order</sup> = (rate factor)</b> for the order &mdash; this is an exponent equation, so you cannot just multiply or divide the ratio directly.</p>
+    <table>
+      <tr><th>If doubling [A] causes the rate to...</th><th>...then the order in A is</th></tr>
+      <tr><td>Not change at all (&times;1)</td><td>0 (zero order): 2<sup>0</sup> = 1</td></tr>
+      <tr><td>Double (&times;2)</td><td>1 (first order): 2<sup>1</sup> = 2</td></tr>
+      <tr><td>Quadruple (&times;4)</td><td>2 (second order): 2<sup>2</sup> = 4</td></tr>
+      <tr><td>Increase by a non-obvious factor</td><td>Use logs: n = log(rate ratio) / log(conc. ratio)</td></tr>
+    </table>
+    <p>A zero-order reactant's concentration drops out of the rate law entirely (since anything<sup>0</sup> = 1). The units of k always depend on the overall order, since the whole rate law must come out in M/s (or M/time).</p>
+  </div>
+
+  <div class="card" id="c16-3">
+    <h2>Chapter 16, Part 3 &mdash; Integrated Rate Laws &amp; Half-Life</h2>
+    <p>Integrated rate laws add time as a variable, letting you find concentration at any time t, or solve for k or t given concentrations.</p>
+    <table>
+      <tr><th></th><th>Zero Order</th><th>First Order</th><th>Second Order</th></tr>
+      <tr><td>Rate law</td><td>rate = k</td><td>rate = k[A]</td><td>rate = k[A]<sup>2</sup></td></tr>
+      <tr><td>Integrated law (straight-line form)</td><td>[A]<sub>t</sub> = &minus;kt + [A]<sub>0</sub></td><td>ln[A]<sub>t</sub> = &minus;kt + ln[A]<sub>0</sub></td><td>1/[A]<sub>t</sub> = kt + 1/[A]<sub>0</sub></td></tr>
+      <tr><td>Plot that gives a straight line</td><td>[A]<sub>t</sub> vs. t</td><td>ln[A]<sub>t</sub> vs. t</td><td>1/[A]<sub>t</sub> vs. t</td></tr>
+      <tr><td>Slope</td><td>&minus;k</td><td>&minus;k</td><td>+k</td></tr>
+      <tr><td>Half-life, t&#189;</td><td>[A]<sub>0</sub> / 2k</td><td>ln2 / k</td><td>1 / (k[A]<sub>0</sub>)</td></tr>
+      <tr><td>Units of k</td><td>mol/L&middot;s</td><td>1/s</td><td>L/mol&middot;s</td></tr>
+    </table>
+    <p><b>Finding the order graphically:</b> if you have [A] vs. time data and don't know the order, make all three plots. Whichever one is a straight line (R&sup2; closest to 1) tells you the order &mdash; and its slope directly gives you k (or &minus;k).</p>
+    <h4>Half-life patterns (memorize the direction of each)</h4>
+    <table>
+      <tr><th>Order</th><th>How each successive half-life compares to the one before it</th></tr>
+      <tr><td>Zero order</td><td><b>Halved</b> each time (100 &rarr; 50 &rarr; 25 hours, e.g.) &mdash; because t&#189; is directly proportional to [A]<sub>0</sub>, which keeps shrinking.</td></tr>
+      <tr><td>First order</td><td><b>Constant</b> &mdash; t&#189; = ln2/k does not depend on [A]<sub>0</sub> at all. This is why radioactive decay (always first order) has a single, fixed half-life.</td></tr>
+      <tr><td>Second order</td><td><b>Doubles</b> each time (100 &rarr; 200 &rarr; 400 hours) &mdash; t&#189; is inversely proportional to [A]<sub>0</sub>, which keeps shrinking, so each half-life takes longer.</td></tr>
+    </table>
+    <div class="box">Carbon-14 dating relies on first-order decay: because t&#189; doesn't depend on the starting amount, the half-life (&asymp;5,730 years) is the same no matter how much carbon-14 you start with.</div>
+  </div>
+
+  <div class="card" id="c16-4">
+    <h2>Chapter 16, Part 4 &mdash; Collision Theory &amp; the Arrhenius Equation</h2>
+    <p><b>Collision theory:</b> particles must collide to react, and an "effective" collision requires two things at once:</p>
+    <ol>
+      <li>Enough energy to clear the <b>activation energy</b> (E<sub>a</sub>) &mdash; the energy threshold needed to reach the transition state.</li>
+      <li>The correct <b>molecular orientation</b> &mdash; the reactive atoms must actually make contact.</li>
+    </ol>
+    <p>Raising temperature increases rate mainly because it increases the <i>fraction</i> of collisions with energy &ge; E<sub>a</sub> (E<sub>a</sub> itself doesn't change) &mdash; plus it modestly increases collision frequency.</p>
+    <h4>The Arrhenius equation</h4>
+    <div class="eq">k = A&middot;e<sup>&minus;E<sub>a</sub>/RT</sup></div>
+    <p>A (the frequency factor) = p&middot;Z, the product of collision frequency (Z) and the orientation-probability factor (p). Two-point form, used when you know k at two temperatures:</p>
+    <div class="eq">ln(k<sub>2</sub>/k<sub>1</sub>) = &minus;(E<sub>a</sub>/R)(1/T<sub>2</sub> &minus; 1/T<sub>1</sub>) &nbsp; &nbsp; R = 8.314 J/mol&middot;K</div>
+    <p class="muted">Always convert T to Kelvin and E<sub>a</sub> to Joules (to match R). Because k depends on T exponentially, a modest % rise in T (or a modest % drop in E<sub>a</sub> from a catalyst) produces a disproportionately larger % change in rate &mdash; never a matching linear change.</p>
+    <h4>Reaction energy diagrams</h4>
+    <div class="eq">&Delta;H<sub>rxn</sub> = E<sub>a</sub>(forward) &minus; E<sub>a</sub>(reverse)</div>
+    <p>The <b>transition state</b> (activated complex) sits at the energy maximum of each step and cannot be isolated. In a multi-step mechanism, each elementary step has its own transition state and its own little "hump" on the diagram &mdash; the number of humps = the number of elementary steps.</p>
+  </div>
+
+  <div class="card" id="c16-5">
+    <h2>Chapter 16, Part 5 &mdash; Reaction Mechanisms</h2>
+    <ul>
+      <li>A <b>mechanism</b> is the sequence of <b>elementary steps</b> that add up to the overall balanced equation.</li>
+      <li><b>Molecularity</b> = the number of reactant particles in ONE elementary step (unimolecular = 1, bimolecular = 2, termolecular = 3 &mdash; rare, since a 3-body simultaneous collision is unlikely).</li>
+      <li>For an elementary step <i>only</i>, reaction order = molecularity, so you CAN read the rate law straight off its coefficients. This does <b>not</b> apply to the overall multi-step reaction.</li>
+      <li>An <b>intermediate</b> is produced in an early step and consumed in a later one &mdash; it cancels out when you sum the steps and never appears in the overall equation or its rate law.</li>
+      <li>The <b>rate-determining step</b> is the slowest elementary step. Its rate law (using its own coefficients) becomes the rate law for the entire reaction.</li>
+    </ul>
+    <h4>Checking whether a proposed mechanism is valid</h4>
+    <ol>
+      <li>The elementary steps must sum to the overall balanced equation (intermediates cancel).</li>
+      <li>Each step must be physically reasonable (generally &le;2, occasionally 3, reactant particles).</li>
+      <li>The mechanism must correlate with the experimentally observed rate law (via the rate-determining step).</li>
+    </ol>
+    <div class="box warn">A mechanism is a <b>hypothesis</b>, not a proof &mdash; meeting all three criteria makes it a reasonable, useful model, not a certainty.</div>
+  </div>
+
+  <div class="card" id="c16-6">
+    <h2>Chapter 16, Part 6 &mdash; Catalysts</h2>
+    <ul>
+      <li>A catalyst speeds up a reaction by providing an <b>alternative pathway with a lower overall activation energy</b> &mdash; it is not consumed.</li>
+      <li>It speeds up the <b>forward and reverse</b> reactions equally, so it does <b>not</b> change &Delta;H<sub>rxn</sub>, the equilibrium position, or K. It only gets the system to equilibrium faster.</li>
+      <li><b>Homogeneous</b> catalyst: same phase as the reactants (e.g., Br<sup>&minus;</sup>(aq) catalyzing H<sub>2</sub>O<sub>2</sub>(aq) decomposition). <b>Heterogeneous</b> catalyst: different phase (e.g., a solid metal catalyzing a gas-phase hydrogenation).</li>
+      <li><b>Enzymes</b> are biological catalysts. The <b>substrate</b> binds to the enzyme's <b>active site</b> &mdash; the lock-and-key model treats the site as a fixed shape; the induced-fit model has it flex to bind more effectively.</li>
+    </ul>
+  </div>
+
+  <div class="card" id="c17-1">
+    <h2>Chapter 17, Part 1 &mdash; The Equilibrium Constant, K</h2>
+    <p>At equilibrium, rate<sub>forward</sub> = rate<sub>reverse</sub>, and concentrations of reactants/products stay constant (not necessarily equal &mdash; just unchanging). This is a <b>dynamic</b> state: both reactions keep happening, just at matched rates.</p>
+    <p>For a A + b B &#8646; c C + d D:</p>
+    <div class="eq">K<sub>c</sub> = [C]<sup>c</sup>[D]<sup>d</sup> / [A]<sup>a</sup>[B]<sup>b</sup></div>
+    <p>Products over reactants, each raised to its coefficient as an exponent &mdash; never as a multiplier. <b>Pure solids and pure liquids are always omitted</b> (their "concentration" is constant and gets folded into K).</p>
+    <table>
+      <tr><th>Value of K</th><th>What it means</th></tr>
+      <tr><td>K &laquo; 1 (e.g., 2.00&times;10<sup>&minus;3</sup>)</td><td>Reactants favored &mdash; little product forms</td></tr>
+      <tr><td>K &asymp; 1</td><td>Neither side favored &mdash; comparable amounts of both</td></tr>
+      <tr><td>K &raquo; 1 (e.g., 200)</td><td>Products favored &mdash; reaction goes nearly to completion</td></tr>
+    </table>
+    <h4>K for a reversed or scaled reaction</h4>
+    <ul>
+      <li>Flipping a reaction: K<sub>reverse</sub> = 1/K<sub>forward</sub></li>
+      <li>Multiplying every coefficient by n: K<sub>new</sub> = (K<sub>original</sub>)<sup>n</sup> &mdash; never K &times; n</li>
+      <li>Adding two reactions in series: K<sub>overall</sub> = K<sub>1</sub> &times; K<sub>2</sub></li>
+    </ul>
+  </div>
+
+  <div class="card" id="c17-2">
+    <h2>Chapter 17, Part 2 &mdash; Reaction Quotient (Q vs. K)</h2>
+    <p>Q has the exact same form as K, but is evaluated at <i>any</i> point in the reaction, not just at equilibrium.</p>
+    <table>
+      <tr><th>Comparison</th><th>What happens</th></tr>
+      <tr><td>Q &lt; K</td><td>Too little product relative to equilibrium &rarr; reaction shifts <b>right</b> (toward products) until Q rises to K</td></tr>
+      <tr><td>Q &gt; K</td><td>Too much product relative to equilibrium &rarr; reaction shifts <b>left</b> (toward reactants) until Q falls to K</td></tr>
+      <tr><td>Q = K</td><td>Already at equilibrium &mdash; no net change</td></tr>
+    </table>
+    <div class="box">No reversible reaction at equilibrium goes to 100% completion (that requires K = &infin;) or stays at 0% conversion (K = 0) &mdash; some finite, nonzero amount of reactant is always converted, but never all of it.</div>
+  </div>
+
+  <div class="card" id="c17-3">
+    <h2>Chapter 17, Part 3 &mdash; K<sub>c</sub> and K<sub>p</sub></h2>
+    <p>For gas-phase equilibria, K can be written with partial pressures (K<sub>p</sub>) instead of concentrations (K<sub>c</sub>):</p>
+    <div class="eq">K<sub>p</sub> = K<sub>c</sub>(RT)<sup>&Delta;n<sub>gas</sub></sup> &nbsp; &nbsp; R = 0.0821 L&middot;atm/mol&middot;K</div>
+    <ul>
+      <li>&Delta;n<sub>gas</sub> = (moles of gaseous product) &minus; (moles of gaseous reactant) &mdash; only count gas-phase species; solids, liquids, and aqueous species are ignored, same as in the equilibrium expression itself.</li>
+      <li>If &Delta;n<sub>gas</sub> = 0, then K<sub>p</sub> = K<sub>c</sub> exactly.</li>
+      <li>Use R = 0.0821 L&middot;atm/mol&middot;K here (not 8.314 J/mol&middot;K, which is for Arrhenius/thermodynamics problems) since pressures are in atm.</li>
+    </ul>
+  </div>
+
+  <div class="card" id="c17-4">
+    <h2>Chapter 17, Part 4 &mdash; ICE Tables &amp; Solving Equilibrium Problems</h2>
+    <p>An <b>ICE table</b> tracks a species' amount through three rows: <b>I</b>nitial, <b>C</b>hange (usually &plusmn;x scaled by stoichiometric coefficients), and <b>E</b>quilibrium (Initial + Change).</p>
+    <div class="box">The sign of x depends on which way the reaction must shift from the given starting point &mdash; if you start with zero product, the reaction must run forward (products get +x, reactants get &minus;x), regardless of which side is written as "reactants."</div>
+    <h4>Three common solving patterns</h4>
+    <ol>
+      <li><b>Direct algebra:</b> if the equilibrium amount of one species is given outright, solve for x directly &mdash; no quadratic needed.</li>
+      <li><b>Perfect-square shortcut:</b> when both reactants start at equal concentration and only one product forms, the K expression often reduces to a perfect square (e.g., K = [2x/(c&minus;x)]&sup2;) &mdash; take a square root instead of using the quadratic formula.</li>
+      <li><b>Small-x approximation:</b> when K is small relative to the initial concentrations, only a little reactant converts to product, so x is small enough that (initial &minus; x) &asymp; initial. This avoids a quadratic, but you must check afterward that x is less than about 5% of the initial value &mdash; if not, you must solve exactly (see next point).</li>
+    </ol>
+    <div class="box trap">A quadratic always gives two mathematical roots, but only one is physically valid. Reject any root that would make an equilibrium concentration negative &mdash; concentrations can never be less than zero.</div>
+  </div>
+
+  <div class="card" id="c17-5">
+    <h2>Chapter 17, Part 5 &mdash; Le Ch&acirc;telier's Principle</h2>
+    <p>"If a system at equilibrium is disturbed, it shifts in the direction that partially relieves the disturbance."</p>
+    <table>
+      <tr><th>Disturbance</th><th>Response</th></tr>
+      <tr><td>Add reactant</td><td>Shifts <b>right</b> (toward products); consumes some of the added reactant</td></tr>
+      <tr><td>Remove reactant</td><td>Shifts <b>left</b> (toward reactants); replaces some of what was removed</td></tr>
+      <tr><td>Add product</td><td>Shifts <b>left</b> (toward reactants)</td></tr>
+      <tr><td>Remove product</td><td>Shifts <b>right</b> (toward products)</td></tr>
+      <tr><td>Decrease volume (increase pressure)</td><td>Shifts toward the side with <b>fewer</b> total moles of gas</td></tr>
+      <tr><td>Increase volume (decrease pressure)</td><td>Shifts toward the side with <b>more</b> total moles of gas</td></tr>
+      <tr><td>Equal gas moles on both sides</td><td>Pressure/volume changes cause <b>no shift</b></td></tr>
+    </table>
+    <h4>Temperature &mdash; treat heat as a reactant or product</h4>
+    <table>
+      <tr><th>Reaction type</th><th>Raising temperature</th><th>Lowering temperature</th></tr>
+      <tr><td>Exothermic (heat is a product: A+B &#8646; C+D+energy)</td><td>Shifts <b>left</b>; K <b>decreases</b></td><td>Shifts <b>right</b>; K <b>increases</b></td></tr>
+      <tr><td>Endothermic (heat is a reactant: energy+A+B &#8646; C+D)</td><td>Shifts <b>right</b>; K <b>increases</b></td><td>Shifts <b>left</b>; K <b>decreases</b></td></tr>
+    </table>
+    <p class="muted">Only temperature changes actually change the value of K. Concentration and pressure/volume changes shift the position of equilibrium but K itself stays the same.</p>
+    <div class="box">Ammonia synthesis trade-off (straight from lecture notes): N<sub>2</sub> + 3H<sub>2</sub> &#8646; 2NH<sub>3</sub> is exothermic and slow. Raising temperature speeds up the <i>rate</i> (kinetics) but shifts equilibrium toward reactants, hurting the <i>yield</i> (equilibrium). Improving one can worsen the other.</div>
+    <div class="box trap"><b>Catalysts do not shift equilibrium.</b> They speed up the forward and reverse reactions equally, so equilibrium is reached faster &mdash; but the equilibrium position and K are unchanged. Don't confuse "gets there faster" with "makes more product."</div>
+  </div>
+
+  <div class="card" id="quickref">
+    <h2>Quick-Reference Equation Sheet</h2>
+    <table>
+      <tr><th>Equation</th><th>Use</th></tr>
+      <tr><td>rate = &minus;(1/a)&Delta;[A]/&Delta;t = (1/c)&Delta;[C]/&Delta;t</td><td>Relating rates of different species (Ch 16.1)</td></tr>
+      <tr><td>Rate = k[A]<sup>n</sup>[B]<sup>m</sup></td><td>Rate law; n, m found experimentally (Ch 16.2)</td></tr>
+      <tr><td>[A]<sub>t</sub> = &minus;kt + [A]<sub>0</sub></td><td>Zero-order integrated rate law</td></tr>
+      <tr><td>ln[A]<sub>t</sub> = &minus;kt + ln[A]<sub>0</sub></td><td>First-order integrated rate law</td></tr>
+      <tr><td>1/[A]<sub>t</sub> = kt + 1/[A]<sub>0</sub></td><td>Second-order integrated rate law</td></tr>
+      <tr><td>t&#189; = [A]<sub>0</sub>/2k &nbsp;|&nbsp; ln2/k &nbsp;|&nbsp; 1/(k[A]<sub>0</sub>)</td><td>Half-life: zero &#124; first &#124; second order</td></tr>
+      <tr><td>ln(k<sub>2</sub>/k<sub>1</sub>) = &minus;(E<sub>a</sub>/R)(1/T<sub>2</sub>&minus;1/T<sub>1</sub>)</td><td>Arrhenius equation, two-point form (Ch 16.4)</td></tr>
+      <tr><td>&Delta;H<sub>rxn</sub> = E<sub>a</sub>(fwd) &minus; E<sub>a</sub>(rev)</td><td>Reaction energy diagrams (Ch 16.4)</td></tr>
+      <tr><td>K<sub>c</sub> = [products]<sup>coeff</sup>/[reactants]<sup>coeff</sup></td><td>Equilibrium constant expression (Ch 17.1)</td></tr>
+      <tr><td>K<sub>p</sub> = K<sub>c</sub>(RT)<sup>&Delta;n<sub>gas</sub></sup></td><td>Converting between K<sub>p</sub> and K<sub>c</sub> (Ch 17.3)</td></tr>
+      <tr><td>Q = [products]<sup>coeff</sup>/[reactants]<sup>coeff</sup> (any point)</td><td>Reaction quotient &mdash; compare to K (Ch 17.2)</td></tr>
+    </table>
+  </div>
+
+  <div class="card" id="checklist">
+    <h2>Professor's Study Guide &mdash; High-Yield Checklist</h2>
+    <p class="muted">Straight from the instructor's own Chapter 16 &amp; 17 study guide documents:</p>
+    <h4>Chapter 16 must-knows</h4>
+    <ul>
+      <li>Determine the rate of reaction from concentration data, and know why coefficients &gt;1 require dividing (the "&minus;1/2" in front of a rate expression).</li>
+      <li>Identify the parts of the rate law equation: what are n, m, and k? How is the order of a reactant determined?</li>
+      <li>Use the method of initial rates to determine reaction orders.</li>
+      <li>Use the integrated rate law equations to find an unknown (e.g., concentration at time t) &mdash; the professor will give you the equations, but you must know which is which.</li>
+      <li>Verify a mechanism: do the steps add up to the overall reaction? What role does an intermediate play?</li>
+      <li>What does a catalyst do, and how does it speed up a reaction?</li>
+      <li>Label reaction energy-profile diagrams and determine endothermic vs. exothermic.</li>
+      <li>What is an enzyme? What is Q and what is half-life, in relation to K?</li>
+    </ul>
+    <h4>Chapter 17 must-knows</h4>
+    <ul>
+      <li>What is chemical equilibrium? Write the equilibrium expression for a given chemical equation (including a heterogeneous one, like NH<sub>3</sub>(g) + HCl(g) &#8646; NH<sub>4</sub>Cl(s)).</li>
+      <li>Know what the value of K means: does K = 200 favor products or reactants? Does K = 2.00&times;10<sup>&minus;3</sup>?</li>
+      <li>Construct and use an ICE table to solve equilibrium problems (the quadratic formula will be given if needed).</li>
+      <li>What effect does a catalyst have on equilibrium?</li>
+      <li>Le Ch&acirc;telier's Principle: know how equilibrium shifts (and which side is favored) for adding/removing reactant or product, raising/lowering temperature for exo- and endothermic reactions, and increasing/decreasing pressure for gas-phase reactions.</li>
+    </ul>
+    <p class="muted">The professor's own disclaimer applies here too: "This is NOT meant to be all the information covered by the exam &mdash; read the chapter, study the PowerPoint, do the homework, quizzes, and assignments."</p>
+  </div>
+
+  <div class="card" id="traps">
+    <h2>Common Traps Seen Across the Homework</h2>
+    <ul>
+      <li>Reaction orders (n, m) are <b>never</b> assumed equal to balanced-equation coefficients &mdash; only true for a genuinely elementary step. Always get orders from experimental data.</li>
+      <li>When solving "concentration doubled, rate changed by factor X" problems: set up <b>2<sup>order</sup> = X</b> and solve for the exponent. Do not multiply or divide the ratio directly &mdash; that's the #1 trap in the Method of Initial Rates.</li>
+      <li>First-order half-life does <b>not</b> depend on starting concentration; zero- and second-order half-lives do (and change in opposite directions as the reaction proceeds).</li>
+      <li>Arrhenius/E<sub>a</sub> problems require T in <b>Kelvin</b> and E<sub>a</sub> in <b>Joules</b> to match R = 8.314 J/mol&middot;K &mdash; mismatched kJ vs. J is the most common error.</li>
+      <li>An intermediate is produced then consumed (cancels from the overall equation); it should <b>never</b> appear in the final experimental rate law.</li>
+      <li>The rate law for the overall reaction comes from the <b>slowest (rate-determining) step only</b> &mdash; not from the overall balanced equation's coefficients.</li>
+      <li>Pure solids and liquids are dropped from BOTH the equilibrium expression <i>and</i> the &Delta;n<sub>gas</sub> count for K<sub>p</sub>/K<sub>c</sub> conversion.</li>
+      <li>K<sub>reverse</sub> = 1/K<sub>forward</sub> (never &minus;K); scaling all coefficients by n gives K<sup>n</sup> (never K&times;n).</li>
+      <li>In an ICE table, reject any root of a quadratic that produces a negative equilibrium concentration.</li>
+      <li>Catalysts speed up how <i>fast</i> equilibrium is reached but never change <b>K</b> or the equilibrium position &mdash; a very common exam trap, tested in both Ch 16 and Ch 17.</li>
+      <li>Only <b>temperature</b> changes the value of K. Concentration and pressure/volume changes shift the equilibrium position but leave K unchanged.</li>
+      <li>For pressure/volume Le Ch&acirc;telier questions, count total moles of <b>gas</b> only on each side &mdash; solids and liquids don't matter for this rule.</li>
+    </ul>
+  </div>
+
+  <p class="muted center" style="text-align:center">Built from Module 2 homework (ALEKS), professor study guides, zoom-meeting notes, and lecture slides. Use the <a href="index.html">Exam 2 Practice App</a> to test yourself on this material.</p>
+</div>
+</body>
+</html>
